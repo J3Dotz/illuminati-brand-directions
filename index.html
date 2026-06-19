@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Illuminati Lighting UK — Brand System Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@200;300;400;500;600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Barlow+Condensed:wght@300;400;500;600;700&family=Jost:ital,wght@0,200;0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex-direction: column; }
+
+/* ── NAV ── */
+.nav { flex-shrink: 0; background: #080706; border-bottom: 0.5px solid #222; }
+.nav-row1 { height: 40px; display: flex; align-items: center; padding: 0 40px; border-bottom: 0.5px solid #1A1A1A; justify-content: space-between; }
+.nav-brand { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: #3A3A3A; white-space: nowrap; }
+.nav-mode-toggle { display: flex; gap: 6px; }
+.mode-btn { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; color: #444; background: none; border: 0.5px solid #2A2A2A; padding: 4px 14px; cursor: pointer; transition: all 0.15s; }
+.mode-btn.active { color: #E0DAD2; border-color: #555; background: #1A1A1A; }
+.nav-row2 { height: 44px; display: flex; align-items: stretch; padding: 0 40px; }
+.nav-tab { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: #444; padding: 0 22px; height: 100%; display: flex; align-items: center; cursor: pointer; border: none; background: none; border-bottom: 1.5px solid transparent; transition: color 0.15s, border-color 0.15s; white-space: nowrap; }
+.nav-tab:hover { color: #888; }
+.nav-tab.active { color: #E0DAD2; border-bottom-color: #E0DAD2; }
+
+/* ── STAGE ── */
+.stage { flex: 1; overflow: hidden; position: relative; }
+.panel { position: absolute; inset: 0; overflow-y: auto; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.45s ease, visibility 0s linear 0.45s; }
+.panel.active { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity 0.45s ease; }
+
+/* ── SHARED LAYOUT ── */
+.hero { padding: 72px 56px 64px; }
+.sect { padding: 52px 56px; }
+.dir-tag { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.24em; text-transform: uppercase; display: block; margin-bottom: 44px; }
+.wordmark-wrap { margin-bottom: 8px; }
+.wordmark-wrap svg { display: block; }
+.wordmark-sub { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; margin-bottom: 52px; }
+.sect-label { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 12px; }
+.sect-label::after { content: ''; flex: 1; height: 0.5px; background: currentColor; opacity: 0.15; }
+.sect-sublabel { font-family: 'Jost', sans-serif; font-size: 8.5px; font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.38; margin-bottom: 32px; }
+.sect-note { font-family: 'Jost', sans-serif; font-size: 10.5px; font-weight: 300; line-height: 1.85; max-width: 620px; margin-top: 20px; }
+
+/* ── COLOUR GRID ── */
+.swatch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 4px; }
+.swatch { padding: 20px 14px 14px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 100px; }
+.sw-name { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+.sw-vals { font-family: 'Space Mono', monospace; font-size: 8px; line-height: 1.85; opacity: 0.5; display: block; }
+
+/* ── TYPE SYSTEM GRID ── */
+.type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 4px; }
+.type-cell { padding: 28px 32px 24px; }
+.type-role { font-family: 'Jost', sans-serif; font-size: 8.5px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px; opacity: 0.38; }
+.type-meta { font-family: 'Space Mono', monospace; font-size: 8px; line-height: 1.85; margin-top: 12px; opacity: 0.32; }
+
+/* ── SPACING TOKENS ── */
+.token-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-bottom: 4px; }
+.token-cell { padding: 18px; }
+.token-label { font-family: 'Jost', sans-serif; font-size: 8.5px; font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.38; margin-bottom: 8px; display: block; }
+.token-value { font-family: 'Space Mono', monospace; font-size: 14px; display: block; margin-bottom: 3px; }
+.token-alt { font-family: 'Space Mono', monospace; font-size: 8.5px; opacity: 0.35; display: block; }
+
+/* ── TYPE IN USE ── */
+.type-in-use { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.tiu-cell { padding: 40px; }
+
+/* ── APPLICATIONS ── */
+.app-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.app-cell { padding: 36px 40px; min-height: 200px; display: flex; flex-direction: column; justify-content: space-between; }
+.app-context { font-family: 'Jost', sans-serif; font-size: 8px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.35; margin-bottom: 6px; display: block; }
+.app-rule { width: 20px; height: 0.5px; margin-bottom: 12px; }
+.app-caption { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; line-height: 2.1; }
+
+/* ── FOOTER ── */
+.fn { font-family: 'Space Mono', monospace; font-size: 8.5px; line-height: 1.9; padding: 18px 56px; opacity: 0.3; }
+
+/* Shared wordmark paths — inlined per panel */
+
+/* ── SCROLL REVEALS ── */
+.sect, .hero, .app-grid, .fn { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s ease; will-change: opacity, transform; }
+.sect.revealed, .hero.revealed, .app-grid.revealed, .fn.revealed { opacity: 1; transform: none; }
+
+/* ── HOVER: swatches ── */
+.swatch { transition: transform 0.25s ease, box-shadow 0.25s ease; position: relative; cursor: default; }
+/* scale in-place so adjacent cells in the tight 2px grid don't get pushed */
+.swatch:hover { transform: scale(1.025); box-shadow: 0 8px 24px rgba(0,0,0,0.16); z-index: 1; }
+/* reveal values on hover */
+.sw-vals { transition: opacity 0.22s ease; }
+.swatch:hover .sw-vals { opacity: 0.82; }
+
+/* ── HOVER: app cells ── */
+.app-cell { transition: box-shadow 0.22s ease; }
+/* white works on dark, Lacquer, and light cells alike */
+.app-cell:hover { box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.12); }
+
+/* ── HOVER: app rule micro-extend ── */
+.app-rule { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); transform-origin: left center; }
+.app-cell:hover .app-rule { transform: scaleX(1.8); }
+
+/* ── HOVER: type + token cells ── */
+.type-cell, .token-cell { transition: box-shadow 0.22s ease; }
+.type-cell:hover, .token-cell:hover { box-shadow: inset 0 0 0 0.5px rgba(160,160,160,0.18); }
+
+/* ── CASCADE: app-grid arrives slightly after the last sect ── */
+.app-grid { transition: opacity 0.7s ease 0.12s, transform 0.7s ease 0.12s; will-change: opacity, transform; }
+
+/* ── HOVER: nav tabs (enhance existing) ── */
+.nav-tab { transition: color 0.18s ease, border-color 0.18s ease; }
+
+/* ── MODE FADE ── */
+.stage { transition: opacity 0.25s ease; }
+.stage.mode-fading { opacity: 0; pointer-events: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero, .sect { padding-left: 32px; padding-right: 32px; }
+  .fn { padding-left: 32px; padding-right: 32px; }
+  .nav-row1, .nav-row2 { padding: 0 24px; }
+}
+@media (max-width: 720px) {
+  .nav-brand { display: none; }
+  .nav-row1 { padding: 0 16px; justify-content: flex-end; }
+  .nav-row2 { padding: 0 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .nav-row2::-webkit-scrollbar { display: none; }
+  .nav-tab { padding: 0 12px; font-size: 8px; letter-spacing: 0.1em; white-space: nowrap; }
+  .hero { padding: 36px 20px 32px; }
+  .sect { padding: 32px 20px; }
+  .fn { padding: 14px 20px; }
+  .swatch-grid { grid-template-columns: repeat(2, 1fr); }
+  .type-grid { grid-template-columns: 1fr; }
+  .type-in-use { grid-template-columns: 1fr; }
+  .app-grid { grid-template-columns: 1fr; }
+  .token-grid { grid-template-columns: repeat(2, 1fr); }
+  .tiu-cell { padding: 28px 20px; }
+  .app-cell { padding: 24px 20px; min-height: 160px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-row1">
+    <span class="nav-brand">Illuminati Lighting UK &nbsp;·&nbsp; Brand System Directions &nbsp;·&nbsp; June 2026</span>
+    <div class="nav-mode-toggle">
+      <button class="mode-btn active" onclick="setMode('light',this)">Light</button>
+      <button class="mode-btn" onclick="setMode('dark',this)">Dark</button>
+    </div>
+  </div>
+  <div class="nav-row2">
+    <button class="nav-tab active" onclick="show(1,this)">Direction 1 — Intentional Red</button>
+    <button class="nav-tab" onclick="show(2,this)">Direction 2 — Mineral &amp; Restraint</button>
+    <button class="nav-tab" onclick="show(3,this)">Direction 3 — Red as Primary</button>
+  </div>
+</nav>
+
+<div class="stage">
+
+<!-- ══════════════════════════════════════════════════
+     D1 — INTENTIONAL RED
+     Space Mono (Display) · Plus Jakarta Sans (Body/Functional)
+     Accent: #8E1315 on 'a' only
+     Light: #F5F0EB ground · Dark: #0C0908 ground
+══════════════════════════════════════════════════ -->
+<div id="p1" class="panel active">
+
+<!-- D1 LIGHT -->
+<div class="d1l mode-light" style="background:#F5F0EB;min-height:100%;">
+  <div class="hero" style="border-bottom:0.5px solid #DDD7CF;">
+    <span class="dir-tag" style="color:#9A8E86;">Direction 1 &nbsp;/&nbsp; Intentional Red &nbsp;/&nbsp; Light</span>
+    <div class="wordmark-wrap"><svg viewBox="0 0 512 79.63" height="44" xmlns="http://www.w3.org/2000/svg"><g fill="#0E0B0A"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><g fill="#8E1315"><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/></g><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div>
+    <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:#0E0B0A;line-height:2.1;max-width:440px;">Celebrated by interior designers, architects<br>and retailers over the world</div>
+  </div>
+
+  <!-- 01 COLOUR -->
+  <div class="sect" style="border-bottom:0.5px solid #DDD7CF;">
+    <div class="sect-label" style="color:#9A8E86;">01 &nbsp; Colour Tokens</div>
+    <div class="sect-sublabel" style="color:#9A8E86;">Primitives · Semantic roles · CMYK values</div>
+    <div class="swatch-grid"><div class="swatch" style="background:#F5F0EB;border:0.5px solid #DDD7CF;"><span class="sw-name" style="color:#9A8E86;">Ground</span><span class="sw-vals" style="color:#9A8E86;">#F5F0EB &middot; CMYK 0 2 4 4</span></div><div class="swatch" style="background:#0E0B0A;"><span class="sw-name" style="color:#9A8E86;">Primary</span><span class="sw-vals" style="color:#9A8E86;">#0E0B0A &middot; CMYK 0 6 8 95</span></div><div class="swatch" style="background:#8E1315;"><span class="sw-name" style="color:#F5F0EB;">Accent &mdash; Lacquer</span><span class="sw-vals" style="color:#F5F0EB;">#8E1315 &middot; CMYK 0 87 85 44</span></div><div class="swatch" style="background:#DDD7CF;"><span class="sw-name" style="color:#6B635C;">Rule</span><span class="sw-vals" style="color:#6B635C;">#DDD7CF &middot; CMYK 0 3 6 13</span></div><div class="swatch" style="background:#9A8E86;"><span class="sw-name" style="color:#F5F0EB;">Muted Text</span><span class="sw-vals" style="color:#F5F0EB;">#9A8E86 &middot; CMYK 0 8 13 40</span></div><div class="swatch" style="background:#E8E2DA;border:0.5px solid #DDD7CF;"><span class="sw-name" style="color:#9A8E86;">Surface</span><span class="sw-vals" style="color:#9A8E86;">#E8E2DA &middot; CMYK 0 3 6 9</span></div></div>
+    <p class="sect-note" style="color:#9A8E86;">Lacquer (#8E1315) is retained exactly from the existing brand. It appears only on the 'a' letterform, fine accent rules, and interactive states — nothing else carries colour. CMYK values are optimised for uncoated stock; confirm on press for coated. Pantone references to be confirmed once a direction is chosen — a physical swatch-book match is needed before this goes to print.</p>
+  </div>
+
+  <!-- 02 TYPOGRAPHY -->
+  <div class="sect" style="border-bottom:0.5px solid #DDD7CF;">
+    <div class="sect-label" style="color:#9A8E86;">02 &nbsp; Typography System</div>
+    <div class="sect-sublabel" style="color:#9A8E86;">Display · H1 · H2 · Subhead · Body · Caption · Utility</div>
+    <div class="type-grid" style="margin-bottom:4px;">
+      <div class="type-cell" style="background:#E8E2DA;">
+        <div class="type-role" style="color:#9A8E86;">Display</div>
+        <div style="font-family:'Space Mono',monospace;font-size:52px;font-weight:400;color:#0E0B0A;line-height:1.0;letter-spacing:-0.02em;">Light<br>as<br>Form</div>
+        <div class="type-meta" style="color:#9A8E86;">Space Mono Regular · 52–64px · −0.02em tracking<br>Campaign, cover titles, hero headlines<br>Google Fonts OFL · print/desktop: OFL commercial</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <div class="type-cell" style="background:#E8E2DA;">
+          <div class="type-role" style="color:#9A8E86;">H1 · H2</div>
+          <div style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:#0E0B0A;line-height:1.2;">The Concentric<br>Collection</div>
+          <div class="type-meta" style="color:#9A8E86;">Space Mono Bold · 20–24px</div>
+        </div>
+        <div class="type-cell" style="background:#E8E2DA;">
+          <div class="type-role" style="color:#9A8E86;">Subhead · Label · Nav</div>
+          <div style="font-family:'Jost',sans-serif;font-size:10px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:#0E0B0A;line-height:2.1;">Ceiling Pendant &nbsp;·&nbsp; Brass Finish<br>Crystal Diffuser &nbsp;·&nbsp; IP44 Rated</div>
+          <div class="type-meta" style="color:#9A8E86;">Jost Regular · 10px · +0.22em · uppercase</div>
+        </div>
+        <div class="type-cell" style="background:#E8E2DA;">
+          <div class="type-role" style="color:#9A8E86;">Body</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:300;color:#0E0B0A;opacity:0.7;line-height:1.85;max-width:320px;">Celebrated by interior designers, architects and retailers the world over — their collections can be found in some of the world's finest commercial and residential interiors.</div>
+          <div class="type-meta" style="color:#9A8E86;">Plus Jakarta Sans Light · 14px / 10.5pt print</div>
+        </div>
+        <div class="type-cell" style="background:#E8E2DA;">
+          <div class="type-role" style="color:#9A8E86;">Caption · Specs · Utility</div>
+          <div style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:0.1em;color:#9A8E86;line-height:2.1;">H: 420mm &nbsp;·&nbsp; W: 180mm &nbsp;·&nbsp; Ø: 120mm<br>SKU: ILL-CON-5BR &nbsp;·&nbsp; RRP: £1,840 ex. VAT</div>
+          <div class="type-meta" style="color:#9A8E86;">Jost Light · 9px / 7pt print · data, legal, footnotes</div>
+        </div>
+      </div>
+    </div>
+    <p class="sect-note" style="color:#9A8E86;">Space Mono's monospaced grid shares the same constructed, technical character as the wordmark — every character the same width, mechanically precise. At 52px it reads as architectural specification. Plus Jakarta Sans handles all body copy: warmer than Inter without being decorative, and legible at the small sizes needed in catalogue running text. Jost is the system utility face — labels, specs, navigation, UI — present throughout but never the personality.</p>
+  </div>
+
+  <!-- 03 TYPE IN USE -->
+  <div class="sect" style="border-bottom:0.5px solid #DDD7CF;">
+    <div class="sect-label" style="color:#9A8E86;">03 &nbsp; Typography in Use</div>
+    <div class="sect-sublabel" style="color:#9A8E86;">Catalogue product spread — all roles working together</div>
+    <div class="type-in-use">
+      <div class="tiu-cell" style="background:#0E0B0A;">
+        <div style="font-family:'Jost',sans-serif;font-size:8.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:#9A8E86;margin-bottom:32px;">Collection &nbsp;·&nbsp; Crystal Series</div>
+        <div style="font-family:'Space Mono',monospace;font-size:36px;font-weight:400;color:#F5F0EB;line-height:1.05;letter-spacing:-0.01em;margin-bottom:6px;">Concentric</div>
+        <div style="width:20px;height:0.5px;background:#8E1315;margin-bottom:24px;"></div>
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:300;color:#F5F0EB;opacity:0.6;line-height:1.85;margin-bottom:32px;">A contemporary statement piece that brings aspiration, luxury and grandeur — multi-layered rings of crystal suspended in polished brass.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;">
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#665C58;margin-bottom:4px;">Height</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;font-weight:400;color:#F5F0EB;opacity:0.7;">420mm</div></div>
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#665C58;margin-bottom:4px;">Diameter</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;font-weight:400;color:#F5F0EB;opacity:0.7;">600mm</div></div>
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#665C58;margin-bottom:4px;">Finish</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;font-weight:400;color:#F5F0EB;opacity:0.7;">Polished Brass</div></div>
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#665C58;margin-bottom:4px;">SKU</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;font-weight:400;color:#F5F0EB;opacity:0.7;">ILL-CON-5BR</div></div>
+        </div>
+        <div style="margin-top:28px;padding-top:20px;border-top:0.5px solid #221310;">
+          <div style="font-family:'Space Mono',monospace;font-size:9px;color:#9A8E86;opacity:0.6;">ILL-CON-5BR &nbsp;·&nbsp; £1,840 ex. VAT<br>Trade price on request</div>
+        </div>
+      </div>
+      <div class="tiu-cell" style="background:#E8E2DA;">
+        <div style="font-family:'Jost',sans-serif;font-size:8.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:#9A8E86;margin-bottom:32px;">Featured In</div>
+        <div style="font-family:'Space Mono',monospace;font-size:18px;font-weight:700;color:#0E0B0A;line-height:1.3;margin-bottom:16px;">Amano Hotel<br>London</div>
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:300;color:#0E0B0A;opacity:0.6;line-height:1.85;margin-bottom:28px;">The Concentric collection was specified for the main lobby of the Amano Hotel, Covent Garden — a space requiring both ambient depth and architectural precision.</div>
+        <div style="width:20px;height:0.5px;background:#8E1315;margin-bottom:16px;"></div>
+        <div style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:#9A8E86;line-height:2.1;">Interior designer: Private Client<br>Sector: Hospitality<br>Location: London, UK</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 SPACING -->
+  <div class="sect" style="border-bottom:0.5px solid #DDD7CF;">
+    <div class="sect-label" style="color:#9A8E86;">04 &nbsp; Spacing &amp; Grid</div>
+    <div class="sect-sublabel" style="color:#9A8E86;">8px digital base · 5mm print base · Major Third scale ×1.25</div>
+    <div class="token-grid">
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Base unit</span><span class="token-value" style="color:#0E0B0A;">8px</span><span class="token-alt" style="color:#9A8E86;">5mm print</span></div>
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Scale ratio</span><span class="token-value" style="color:#0E0B0A;">×1.250</span><span class="token-alt" style="color:#9A8E86;">Major Third</span></div>
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Body base</span><span class="token-value" style="color:#0E0B0A;">14px</span><span class="token-alt" style="color:#9A8E86;">10.5pt print</span></div>
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Line height</span><span class="token-value" style="color:#0E0B0A;">1.85</span><span class="token-alt" style="color:#9A8E86;">14pt leading</span></div>
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Column gutter</span><span class="token-value" style="color:#0E0B0A;">24px</span><span class="token-alt" style="color:#9A8E86;">6mm print</span></div>
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Page margin</span><span class="token-value" style="color:#0E0B0A;">56px</span><span class="token-alt" style="color:#9A8E86;">14mm print</span></div>
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Catalogue bleed</span><span class="token-value" style="color:#0E0B0A;">—</span><span class="token-alt" style="color:#9A8E86;">3mm all sides</span></div>
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Safe zone</span><span class="token-value" style="color:#0E0B0A;">—</span><span class="token-alt" style="color:#9A8E86;">5mm from trim</span></div>
+    </div>
+  </div>
+
+  <!-- 05 APPLICATIONS -->
+  <div class="sect" style="padding-bottom:0;border-bottom:none;"><div class="sect-label" style="color:#9A8E86;">05 &nbsp; Applications</div><div class="sect-sublabel" style="color:#9A8E86;">Digital · Print · Environmental</div></div>
+  <div class="app-grid">
+    <div class="app-cell" style="background:#E8E2DA;"><div><span class="app-context" style="color:#9A8E86;">Digital · Website nav</span><svg viewBox="0 0 512 79.63" height="20" style="margin-top:8px;" xmlns="http://www.w3.org/2000/svg"><g fill="#0E0B0A"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><g fill="#8E1315"><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/></g><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div><div><div class="app-rule" style="background:#8E1315;"></div><div class="app-caption" style="color:#9A8E86;">Light ground · Lacquer accent</div></div></div>
+    <div class="app-cell" style="background:#0E0B0A;"><div><span class="app-context" style="color:#3A2A28;">Print · Catalogue cover</span><div style="font-family:'Space Mono',monospace;font-size:28px;font-weight:400;color:#F5F0EB;line-height:1.1;margin-top:12px;">The<br>Collections<br>2025–26</div></div><div style="width:16px;height:0.5px;background:#8E1315;"></div></div>
+    <div class="app-cell" style="background:#8E1315;"><div><span class="app-context" style="color:rgba(245,240,235,0.3);">Digital · Campaign / Social</span><svg viewBox="0 0 512 79.63" height="18" style="margin-top:10px;" xmlns="http://www.w3.org/2000/svg"><g fill="#F5F0EB"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><g fill="rgba(245,240,235,0.35)"><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/></g><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div><div><div class="app-rule" style="background:rgba(245,240,235,0.3);"></div><div class="app-caption" style="color:rgba(245,240,235,0.5);">Lacquer ground · max presence</div></div></div>
+    <div class="app-cell" style="background:#F5F0EB;border:0.5px solid #DDD7CF;"><div><span class="app-context" style="color:#9A8E86;">Print · Letterhead · Stationery</span><div style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:0.14em;color:#9A8E86;line-height:2.2;margin-top:14px;">Illuminati Lighting UK Ltd<br>illuminati-lighting.co.uk<br>+44 (0)20 0000 0000</div></div><div style="width:16px;height:0.5px;background:#8E1315;"></div></div>
+  </div>
+  <div class="fn" style="border-top:0.5px solid #DDD7CF;">D1 Light · Space Mono + Plus Jakarta Sans + Jost (all Google Fonts / OFL · commercial print permitted) · CMYK uncoated-optimised · Pantone references TBC</div>
+</div>
+
+<!-- D1 DARK -->
+<div class="d1d mode-dark" style="background:#0C0908;min-height:100%;display:none;">
+  <div class="hero" style="border-bottom:0.5px solid #1E1210;">
+    <span class="dir-tag" style="color:#665C58;">Direction 1 &nbsp;/&nbsp; Intentional Red &nbsp;/&nbsp; Dark</span>
+    <div class="wordmark-wrap"><svg viewBox="0 0 512 79.63" height="44" xmlns="http://www.w3.org/2000/svg"><g fill="#F0EAE3"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><g fill="#8E1315"><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/></g><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div>
+    <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:#F0EAE3;line-height:2.1;max-width:440px;">Celebrated by interior designers, architects<br>and retailers over the world</div>
+  </div>
+  <div class="sect" style="border-bottom:0.5px solid #1E1210;">
+    <div class="sect-label" style="color:#665C58;">01 &nbsp; Colour Tokens — Dark</div>
+    <div class="sect-sublabel" style="color:#665C58;">Same primitives · ground and primary roles inverted</div>
+    <div class="swatch-grid"><div class="swatch" style="background:#0C0908;"><span class="sw-name" style="color:#665C58;">Ground</span><span class="sw-vals" style="color:#665C58;">#0C0908 &middot; CMYK 0 8 10 95</span></div><div class="swatch" style="background:#F0EAE3;"><span class="sw-name" style="color:#3A2A28;">Primary</span><span class="sw-vals" style="color:#3A2A28;">#F0EAE3 &middot; CMYK 0 2 5 6</span></div><div class="swatch" style="background:#8E1315;"><span class="sw-name" style="color:#F0EAE3;">Accent &mdash; Lacquer</span><span class="sw-vals" style="color:#F0EAE3;">#8E1315 &middot; CMYK 0 87 85 44</span></div><div class="swatch" style="background:#1E1210;"><span class="sw-name" style="color:#665C58;">Rule</span><span class="sw-vals" style="color:#665C58;">#1E1210 &middot; CMYK 0 8 10 92</span></div><div class="swatch" style="background:#665C58;"><span class="sw-name" style="color:#F0EAE3;">Muted Text</span><span class="sw-vals" style="color:#F0EAE3;">#665C58 &middot; CMYK 0 7 11 60</span></div><div class="swatch" style="background:#160E0C;"><span class="sw-name" style="color:#665C58;">Surface</span><span class="sw-vals" style="color:#665C58;">#160E0C &middot; CMYK 0 8 10 91</span></div></div>
+  </div>
+  <div class="sect" style="border-bottom:0.5px solid #1E1210;">
+    <div class="sect-label" style="color:#665C58;">02 · 03 &nbsp; Typography &amp; In Use — Dark</div>
+    <div class="sect-sublabel" style="color:#665C58;">Same system · inverted ground</div>
+    <div class="type-in-use">
+      <div class="tiu-cell" style="background:#160E0C;">
+        <div style="font-family:'Jost',sans-serif;font-size:8.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:#665C58;margin-bottom:32px;">Collection &nbsp;·&nbsp; Crystal Series</div>
+        <div style="font-family:'Space Mono',monospace;font-size:36px;font-weight:400;color:#F0EAE3;line-height:1.05;letter-spacing:-0.01em;margin-bottom:6px;">Concentric</div>
+        <div style="width:20px;height:0.5px;background:#8E1315;margin-bottom:24px;"></div>
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:300;color:#F0EAE3;opacity:0.55;line-height:1.85;margin-bottom:32px;">A contemporary statement piece that brings aspiration, luxury and grandeur — multi-layered rings of crystal suspended in polished brass.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;">
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#4A3A38;margin-bottom:4px;">Height</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;color:#F0EAE3;opacity:0.6;">420mm</div></div>
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#4A3A38;margin-bottom:4px;">Diameter</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;color:#F0EAE3;opacity:0.6;">600mm</div></div>
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#4A3A38;margin-bottom:4px;">Finish</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;color:#F0EAE3;opacity:0.6;">Polished Brass</div></div>
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#4A3A38;margin-bottom:4px;">SKU</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;color:#F0EAE3;opacity:0.6;">ILL-CON-5BR</div></div>
+        </div>
+      </div>
+      <div class="tiu-cell" style="background:#1E1210;">
+        <div style="font-family:'Jost',sans-serif;font-size:8.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:#665C58;margin-bottom:32px;">Featured In</div>
+        <div style="font-family:'Space Mono',monospace;font-size:18px;font-weight:700;color:#F0EAE3;line-height:1.3;margin-bottom:16px;">Amano Hotel<br>London</div>
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:300;color:#F0EAE3;opacity:0.5;line-height:1.85;margin-bottom:28px;">Specified for the main lobby — a space requiring both ambient depth and architectural precision.</div>
+        <div style="width:20px;height:0.5px;background:#8E1315;margin-bottom:16px;"></div>
+        <div style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:#665C58;line-height:2.1;">Sector: Hospitality<br>Location: London, UK</div>
+      </div>
+    </div>
+  </div>
+  <div class="sect" style="padding-bottom:0;border-bottom:none;"><div class="sect-label" style="color:#665C58;">04 &nbsp; Applications — Dark</div></div>
+  <div class="app-grid">
+    <div class="app-cell" style="background:#160E0C;"><div><span class="app-context" style="color:#3A2A28;">Digital · Nav dark</span><svg viewBox="0 0 512 79.63" height="20" style="margin-top:8px;" xmlns="http://www.w3.org/2000/svg"><g fill="#F0EAE3"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><g fill="#8E1315"><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/></g><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div><div><div class="app-rule" style="background:#8E1315;"></div><div class="app-caption" style="color:#665C58;">Dark ground · Lacquer</div></div></div>
+    <div class="app-cell" style="background:#1E1210;"><div><span class="app-context" style="color:#3A2A28;">Print · Dark section</span><div style="font-family:'Space Mono',monospace;font-size:26px;font-weight:400;color:#F0EAE3;line-height:1.15;margin-top:12px;">The<br>Collections<br>2025–26</div></div><div style="width:16px;height:0.5px;background:#8E1315;"></div></div>
+    <div class="app-cell" style="background:#8E1315;"><div><span class="app-context" style="color:rgba(240,234,227,0.3);">Digital · Campaign</span><svg viewBox="0 0 512 79.63" height="18" style="margin-top:10px;" xmlns="http://www.w3.org/2000/svg"><g fill="#F0EAE3"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><g fill="rgba(240,234,227,0.35)"><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/></g><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div><div><div class="app-rule" style="background:rgba(240,234,227,0.3);"></div><div class="app-caption" style="color:rgba(240,234,227,0.5);">Lacquer ground</div></div></div>
+    <div class="app-cell" style="background:#0C0908;border:0.5px solid #1E1210;"><div><span class="app-context" style="color:#3A2A28;">Print · Exhibition stand</span><div style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:0.14em;color:#665C58;line-height:2.2;margin-top:14px;">Decorex International<br>Stand C14 · Olympia London<br>Paris Déco Off · Dubai Index</div></div><div style="width:16px;height:0.5px;background:#8E1315;"></div></div>
+  </div>
+  <div class="fn" style="border-top:0.5px solid #1E1210;">D1 Dark · Space Mono + Plus Jakarta Sans + Jost (all OFL) · Lacquer (#8E1315) unchanged across modes · token roles inverted</div>
+</div>
+</div><!-- /p1 -->
+
+
+<!-- ══════════════════════════════════════════════════
+     D2 — MINERAL & RESTRAINT
+     Outfit (Display) · DM Sans (Body/Functional)
+     Accent: #8A6A3A Brass on 'a'
+     Light: #F1ECE5 · Dark: #1A1714
+══════════════════════════════════════════════════ -->
+<div id="p2" class="panel">
+
+<!-- D2 LIGHT -->
+<div class="d2l mode-light" style="background:#F1ECE5;min-height:100%;">
+  <div class="hero" style="border-bottom:0.5px solid #DDD5C6;">
+    <span class="dir-tag" style="color:#78726C;">Direction 2 &nbsp;/&nbsp; Mineral &amp; Restraint &nbsp;/&nbsp; Light</span>
+    <div class="wordmark-wrap"><svg viewBox="0 0 512 79.63" height="44" xmlns="http://www.w3.org/2000/svg"><g fill="#1A1714"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><g fill="#8A6A3A"><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/></g><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div>
+    <div style="font-family:'Outfit',sans-serif;font-size:19px;font-weight:200;letter-spacing:0.01em;color:#1A1714;line-height:1.6;max-width:480px;opacity:0.65;">Celebrated by interior designers, architects<br>and retailers over the world</div>
+  </div>
+
+  <div class="sect" style="border-bottom:0.5px solid #DDD5C6;">
+    <div class="sect-label" style="color:#78726C;">01 &nbsp; Colour Tokens</div>
+    <div class="sect-sublabel" style="color:#78726C;">Material palette — no red</div>
+    <div class="swatch-grid"><div class="swatch" style="background:#F1ECE5;border:0.5px solid #DDD5C6;"><span class="sw-name" style="color:#78726C;">Ground &mdash; Parchment</span><span class="sw-vals" style="color:#78726C;">#F1ECE5 &middot; CMYK 0 2 5 5</span></div><div class="swatch" style="background:#1A1714;"><span class="sw-name" style="color:#78726C;">Primary &mdash; Charcoal</span><span class="sw-vals" style="color:#78726C;">#1A1714 &middot; CMYK 0 5 8 90</span></div><div class="swatch" style="background:#8A6A3A;"><span class="sw-name" style="color:#F1ECE5;">Accent &mdash; Brass</span><span class="sw-vals" style="color:#F1ECE5;">#8A6A3A &middot; CMYK 0 23 58 46</span></div><div class="swatch" style="background:#CFC4B4;"><span class="sw-name" style="color:#1A1714;">Rule &mdash; Stone</span><span class="sw-vals" style="color:#1A1714;">#CFC4B4 &middot; CMYK 0 5 13 19</span></div><div class="swatch" style="background:#78726C;"><span class="sw-name" style="color:#F1ECE5;">Muted Text &mdash; Slate</span><span class="sw-vals" style="color:#F1ECE5;">#78726C &middot; CMYK 0 5 10 53</span></div><div class="swatch" style="background:#E6DFD6;border:0.5px solid #DDD5C6;"><span class="sw-name" style="color:#78726C;">Surface &mdash; Linen</span><span class="sw-vals" style="color:#78726C;">#E6DFD6 &middot; CMYK 0 3 7 10</span></div></div>
+    <p class="sect-note" style="color:#78726C;">No red. The palette is drawn from the material world of the product range — alabaster, aged brass, oxidised stone. Brass (#8A6A3A) is the single accent: 'a' letterform, fine rules, interactive states, and accent foiling on premium print collateral. Pantone reference TBC once a direction is chosen.</p>
+  </div>
+
+  <div class="sect" style="border-bottom:0.5px solid #DDD5C6;">
+    <div class="sect-label" style="color:#78726C;">02 &nbsp; Typography System</div>
+    <div class="sect-sublabel" style="color:#78726C;">Outfit (Display · Editorial) · DM Sans (Body · All functional) · Jost (Utility · Specs)</div>
+    <div class="type-grid">
+      <div class="type-cell" style="background:#E6DFD6;">
+        <div class="type-role" style="color:#78726C;">Display</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:52px;font-weight:200;color:#1A1714;line-height:1.0;letter-spacing:-0.01em;">Light<br>as<br>Form</div>
+        <div class="type-meta" style="color:#78726C;">Outfit ExtraLight · 52–64px · −0.01em tracking<br>Campaign, cover titles, hero headlines<br>Google Fonts OFL · commercial print permitted<br>Licensed alt: Graphik Light (Commercial Type)</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <div class="type-cell" style="background:#E6DFD6;"><div class="type-role" style="color:#78726C;">H1 · H2</div><div style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:400;color:#1A1714;line-height:1.2;">The Concentric<br>Collection</div><div class="type-meta" style="color:#78726C;">Outfit Regular · 20–24px</div></div>
+        <div class="type-cell" style="background:#E6DFD6;"><div class="type-role" style="color:#78726C;">Subhead · Label · Nav</div><div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:#1A1714;line-height:2.1;opacity:0.7;">Ceiling Pendant &nbsp;·&nbsp; Brass Finish<br>Crystal Diffuser &nbsp;·&nbsp; IP44 Rated</div><div class="type-meta" style="color:#78726C;">DM Sans Regular · 10px · +0.20em · uppercase</div></div>
+        <div class="type-cell" style="background:#E6DFD6;"><div class="type-role" style="color:#78726C;">Body</div><div style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;color:#1A1714;opacity:0.6;line-height:1.85;max-width:320px;">Celebrated by interior designers, architects and retailers the world over — their collections can be found in some of the world's finest commercial and residential interiors.</div><div class="type-meta" style="color:#78726C;">DM Sans Light · 14px / 10.5pt print</div></div>
+        <div class="type-cell" style="background:#E6DFD6;"><div class="type-role" style="color:#78726C;">Caption · Specs · Utility</div><div style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:0.1em;color:#78726C;line-height:2.1;">H: 420mm &nbsp;·&nbsp; W: 180mm &nbsp;·&nbsp; Ø: 120mm<br>SKU: ILL-CON-5BR &nbsp;·&nbsp; RRP: £1,840 ex. VAT</div><div class="type-meta" style="color:#78726C;">Jost Light · 9px / 7pt print</div></div>
+      </div>
+    </div>
+    <p class="sect-note" style="color:#78726C;">Outfit at ExtraLight has genuine optical character — slightly rounded terminals give it warmth without being soft, and at display scale it holds poise without looking like a template choice. DM Sans handles all body and functional text: more structured than Plus Jakarta Sans, with a slightly cooler register that suits the material restraint of this direction.</p>
+  </div>
+
+  <div class="sect" style="border-bottom:0.5px solid #DDD5C6;">
+    <div class="sect-label" style="color:#78726C;">03 &nbsp; Typography in Use</div>
+    <div class="sect-sublabel" style="color:#78726C;">Catalogue product spread — all roles working together</div>
+    <div class="type-in-use">
+      <div class="tiu-cell" style="background:#1A1714;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:8.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:#5A5450;margin-bottom:32px;">Collection &nbsp;·&nbsp; Crystal Series</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:36px;font-weight:200;color:#F1ECE5;line-height:1.05;margin-bottom:6px;">Concentric</div>
+        <div style="width:20px;height:0.5px;background:#8A6A3A;margin-bottom:24px;"></div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:300;color:#F1ECE5;opacity:0.5;line-height:1.85;margin-bottom:32px;">A contemporary statement piece that brings aspiration, luxury and grandeur — multi-layered rings of crystal suspended in polished brass.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;">
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#3A3430;margin-bottom:4px;">Height</div><div style="font-family:'DM Sans',sans-serif;font-size:10.5px;color:#F1ECE5;opacity:0.55;">420mm</div></div>
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#3A3430;margin-bottom:4px;">Diameter</div><div style="font-family:'DM Sans',sans-serif;font-size:10.5px;color:#F1ECE5;opacity:0.55;">600mm</div></div>
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#3A3430;margin-bottom:4px;">Finish</div><div style="font-family:'DM Sans',sans-serif;font-size:10.5px;color:#F1ECE5;opacity:0.55;">Polished Brass</div></div>
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#3A3430;margin-bottom:4px;">SKU</div><div style="font-family:'DM Sans',sans-serif;font-size:10.5px;color:#F1ECE5;opacity:0.55;">ILL-CON-5BR</div></div>
+        </div>
+      </div>
+      <div class="tiu-cell" style="background:#E6DFD6;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:8.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:#78726C;margin-bottom:32px;">Featured In</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:400;color:#1A1714;line-height:1.3;margin-bottom:16px;">Amano Hotel<br>London</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:300;color:#1A1714;opacity:0.55;line-height:1.85;margin-bottom:28px;">Specified for the main lobby — a space requiring both ambient depth and architectural precision from a bespoke Illuminati installation.</div>
+        <div style="width:20px;height:0.5px;background:#8A6A3A;margin-bottom:16px;"></div>
+        <div style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:#78726C;line-height:2.1;">Sector: Hospitality<br>Location: London, UK</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sect" style="border-bottom:0.5px solid #DDD5C6;">
+    <div class="sect-label" style="color:#78726C;">04 &nbsp; Spacing &amp; Grid</div>
+    <div class="sect-sublabel" style="color:#78726C;">8px / 5mm dual base · Major Third ×1.25</div>
+    <div class="token-grid">
+      <div class="token-cell" style="background:#E6DFD6;"><span class="token-label" style="color:#78726C;">Base unit</span><span class="token-value" style="color:#1A1714;">8px</span><span class="token-alt" style="color:#78726C;">5mm print</span></div>
+      <div class="token-cell" style="background:#E6DFD6;"><span class="token-label" style="color:#78726C;">Scale ratio</span><span class="token-value" style="color:#1A1714;">×1.250</span><span class="token-alt" style="color:#78726C;">Major Third</span></div>
+      <div class="token-cell" style="background:#E6DFD6;"><span class="token-label" style="color:#78726C;">Body base</span><span class="token-value" style="color:#1A1714;">14px</span><span class="token-alt" style="color:#78726C;">10.5pt print</span></div>
+      <div class="token-cell" style="background:#E6DFD6;"><span class="token-label" style="color:#78726C;">Line height</span><span class="token-value" style="color:#1A1714;">1.85</span><span class="token-alt" style="color:#78726C;">14pt leading</span></div>
+      <div class="token-cell" style="background:#E6DFD6;"><span class="token-label" style="color:#78726C;">Column gutter</span><span class="token-value" style="color:#1A1714;">24px</span><span class="token-alt" style="color:#78726C;">6mm print</span></div>
+      <div class="token-cell" style="background:#E6DFD6;"><span class="token-label" style="color:#78726C;">Page margin</span><span class="token-value" style="color:#1A1714;">56px</span><span class="token-alt" style="color:#78726C;">14mm print</span></div>
+      <div class="token-cell" style="background:#E6DFD6;"><span class="token-label" style="color:#78726C;">Catalogue bleed</span><span class="token-value" style="color:#1A1714;">—</span><span class="token-alt" style="color:#78726C;">3mm all sides</span></div>
+      <div class="token-cell" style="background:#E6DFD6;"><span class="token-label" style="color:#78726C;">Safe zone</span><span class="token-value" style="color:#1A1714;">—</span><span class="token-alt" style="color:#78726C;">5mm from trim</span></div>
+    </div>
+  </div>
+
+  <div class="sect" style="padding-bottom:0;border-bottom:none;"><div class="sect-label" style="color:#78726C;">05 &nbsp; Applications</div><div class="sect-sublabel" style="color:#78726C;">Digital · Print · Environmental</div></div>
+  <div class="app-grid">
+    <div class="app-cell" style="background:#E6DFD6;"><div><span class="app-context" style="color:#78726C;">Digital · Nav</span><svg viewBox="0 0 512 79.63" height="20" style="margin-top:8px;" xmlns="http://www.w3.org/2000/svg"><g fill="#1A1714"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><g fill="#8A6A3A"><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/></g><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div><div><div class="app-rule" style="background:#8A6A3A;"></div><div class="app-caption" style="color:#78726C;">Light ground · Brass</div></div></div>
+    <div class="app-cell" style="background:#1A1714;"><div><span class="app-context" style="color:#3A3430;">Print · Catalogue cover</span><div style="font-family:'Outfit',sans-serif;font-size:28px;font-weight:200;color:#F1ECE5;line-height:1.2;margin-top:12px;">The<br>Collections<br>2025–26</div></div><div style="width:16px;height:0.5px;background:#8A6A3A;"></div></div>
+    <div class="app-cell" style="background:#8A6A3A;"><div><span class="app-context" style="color:rgba(241,236,229,0.3);">Digital · Campaign</span><svg viewBox="0 0 512 79.63" height="18" style="margin-top:10px;" xmlns="http://www.w3.org/2000/svg"><g fill="#F1ECE5"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><g fill="rgba(241,236,229,0.35)"><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/></g><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div><div><div class="app-rule" style="background:rgba(241,236,229,0.3);"></div><div class="app-caption" style="color:rgba(241,236,229,0.5);">Brass ground</div></div></div>
+    <div class="app-cell" style="background:#F1ECE5;border:0.5px solid #DDD5C6;"><div><span class="app-context" style="color:#78726C;">Print · Letterhead</span><div style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:0.14em;color:#78726C;line-height:2.2;margin-top:14px;">Illuminati Lighting UK Ltd<br>illuminati-lighting.co.uk<br>+44 (0)20 0000 0000</div></div><div style="width:16px;height:0.5px;background:#8A6A3A;"></div></div>
+  </div>
+  <div class="fn" style="border-top:0.5px solid #DDD5C6;">D2 Light · Outfit + DM Sans + Jost (all Google Fonts / OFL) · CMYK uncoated-optimised · all faces OFL commercial print permitted · Pantone references TBC</div>
+</div>
+
+<!-- D2 DARK -->
+<div class="d2d mode-dark" style="background:#1A1714;min-height:100%;display:none;">
+  <div class="hero" style="border-bottom:0.5px solid #2E2824;">
+    <span class="dir-tag" style="color:#5A5450;">Direction 2 &nbsp;/&nbsp; Mineral &amp; Restraint &nbsp;/&nbsp; Dark</span>
+    <div class="wordmark-wrap"><svg viewBox="0 0 512 79.63" height="44" xmlns="http://www.w3.org/2000/svg"><g fill="#F1ECE5"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><g fill="#8A6A3A"><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/></g><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div>
+    <div style="font-family:'Outfit',sans-serif;font-size:19px;font-weight:200;letter-spacing:0.01em;color:#F1ECE5;line-height:1.6;max-width:480px;opacity:0.55;">Celebrated by interior designers, architects<br>and retailers over the world</div>
+  </div>
+  <div class="sect" style="border-bottom:0.5px solid #2E2824;">
+    <div class="sect-label" style="color:#5A5450;">01 &nbsp; Colour Tokens — Dark</div>
+    <div class="sect-sublabel" style="color:#5A5450;">Ground and primary inverted · Brass unchanged</div>
+    <div class="swatch-grid"><div class="swatch" style="background:#1A1714;"><span class="sw-name" style="color:#5A5450;">Ground &mdash; Charcoal</span><span class="sw-vals" style="color:#5A5450;">#1A1714 &middot; CMYK 0 5 8 90</span></div><div class="swatch" style="background:#F1ECE5;"><span class="sw-name" style="color:#3A3430;">Primary &mdash; Parchment</span><span class="sw-vals" style="color:#3A3430;">#F1ECE5 &middot; CMYK 0 2 5 5</span></div><div class="swatch" style="background:#8A6A3A;"><span class="sw-name" style="color:#F1ECE5;">Accent &mdash; Brass</span><span class="sw-vals" style="color:#F1ECE5;">#8A6A3A &middot; CMYK 0 23 58 46</span></div><div class="swatch" style="background:#2E2824;"><span class="sw-name" style="color:#5A5450;">Rule</span><span class="sw-vals" style="color:#5A5450;">#2E2824 &middot; CMYK 0 7 11 84</span></div><div class="swatch" style="background:#5A5450;"><span class="sw-name" style="color:#F1ECE5;">Muted Text</span><span class="sw-vals" style="color:#F1ECE5;">#5A5450 &middot; CMYK 0 6 10 65</span></div><div class="swatch" style="background:#241F1B;"><span class="sw-name" style="color:#5A5450;">Surface</span><span class="sw-vals" style="color:#5A5450;">#241F1B &middot; CMYK 0 7 11 86</span></div></div>
+  </div>
+  <div class="sect" style="border-bottom:0.5px solid #2E2824;">
+    <div class="sect-label" style="color:#5A5450;">02 · 03 &nbsp; Typography &amp; In Use — Dark</div>
+    <div class="type-in-use">
+      <div class="tiu-cell" style="background:#241F1B;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:8.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:#5A5450;margin-bottom:32px;">Collection &nbsp;·&nbsp; Crystal Series</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:36px;font-weight:200;color:#F1ECE5;line-height:1.05;margin-bottom:6px;">Concentric</div>
+        <div style="width:20px;height:0.5px;background:#8A6A3A;margin-bottom:24px;"></div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:300;color:#F1ECE5;opacity:0.45;line-height:1.85;margin-bottom:32px;">A contemporary statement piece that brings aspiration, luxury and grandeur — multi-layered rings of crystal suspended in polished brass.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;">
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#3A3430;margin-bottom:4px;">Height</div><div style="font-family:'DM Sans',sans-serif;font-size:10.5px;color:#F1ECE5;opacity:0.5;">420mm</div></div>
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#3A3430;margin-bottom:4px;">Diameter</div><div style="font-family:'DM Sans',sans-serif;font-size:10.5px;color:#F1ECE5;opacity:0.5;">600mm</div></div>
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#3A3430;margin-bottom:4px;">Finish</div><div style="font-family:'DM Sans',sans-serif;font-size:10.5px;color:#F1ECE5;opacity:0.5;">Polished Brass</div></div>
+          <div><div style="font-family:'Jost',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#3A3430;margin-bottom:4px;">SKU</div><div style="font-family:'DM Sans',sans-serif;font-size:10.5px;color:#F1ECE5;opacity:0.5;">ILL-CON-5BR</div></div>
+        </div>
+      </div>
+      <div class="tiu-cell" style="background:#2E2824;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:8.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:#5A5450;margin-bottom:32px;">Featured In</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:400;color:#F1ECE5;line-height:1.3;margin-bottom:16px;">Amano Hotel<br>London</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:300;color:#F1ECE5;opacity:0.45;line-height:1.85;margin-bottom:28px;">Specified for the main lobby — a space requiring both ambient depth and architectural precision.</div>
+        <div style="width:20px;height:0.5px;background:#8A6A3A;margin-bottom:16px;"></div>
+        <div style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:#5A5450;line-height:2.1;">Sector: Hospitality<br>Location: London, UK</div>
+      </div>
+    </div>
+  </div>
+  <div class="sect" style="padding-bottom:0;border-bottom:none;"><div class="sect-label" style="color:#5A5450;">04 &nbsp; Applications — Dark</div></div>
+  <div class="app-grid">
+    <div class="app-cell" style="background:#241F1B;"><div><span class="app-context" style="color:#3A3430;">Digital · Nav dark</span><svg viewBox="0 0 512 79.63" height="20" style="margin-top:8px;" xmlns="http://www.w3.org/2000/svg"><g fill="#F1ECE5"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><g fill="#8A6A3A"><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/></g><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div><div><div class="app-rule" style="background:#8A6A3A;"></div><div class="app-caption" style="color:#5A5450;">Dark · Brass</div></div></div>
+    <div class="app-cell" style="background:#2E2824;"><div><span class="app-context" style="color:#3A3430;">Print · Catalogue dark</span><div style="font-family:'Outfit',sans-serif;font-size:26px;font-weight:200;color:#F1ECE5;line-height:1.2;margin-top:12px;">The<br>Collections<br>2025–26</div></div><div style="width:16px;height:0.5px;background:#8A6A3A;"></div></div>
+    <div class="app-cell" style="background:#8A6A3A;"><div><span class="app-context" style="color:rgba(241,236,229,0.3);">Digital · Campaign</span><svg viewBox="0 0 512 79.63" height="18" style="margin-top:10px;" xmlns="http://www.w3.org/2000/svg"><g fill="#F1ECE5"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><g fill="rgba(241,236,229,0.35)"><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/></g><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div><div><div class="app-rule" style="background:rgba(241,236,229,0.3);"></div><div class="app-caption" style="color:rgba(241,236,229,0.5);">Brass ground</div></div></div>
+    <div class="app-cell" style="background:#1A1714;border:0.5px solid #2E2824;"><div><span class="app-context" style="color:#3A3430;">Print · Exhibition</span><div style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:0.14em;color:#5A5450;line-height:2.2;margin-top:14px;">Decorex · Paris Déco Off<br>Dubai Index Show<br>illuminati-lighting.co.uk</div></div><div style="width:16px;height:0.5px;background:#8A6A3A;"></div></div>
+  </div>
+  <div class="fn" style="border-top:0.5px solid #2E2824;">D2 Dark · Outfit + DM Sans + Jost (all OFL) · Brass (#8A6A3A) unchanged across modes · ground/primary roles inverted</div>
+</div>
+</div><!-- /p2 -->
+
+
+<!-- ══════════════════════════════════════════════════
+     D3 — RED AS PRIMARY
+     Barlow Condensed (Display/Heading) · Jost (Body/Functional)
+     Entire wordmark in red · red used as structural ground
+
+     LIGHT: Wordmark in #8E1315 on #F5F0EB
+     DARK:  Red (#8E1315) as ground · warm white wordmark
+            'a' shape shown with deep red knockout so it reads
+══════════════════════════════════════════════════ -->
+<div id="p3" class="panel">
+
+<!-- D3 LIGHT -->
+<div class="d3l mode-light" style="background:#F5F0EB;min-height:100%;">
+  <div class="hero" style="border-bottom:0.5px solid #DDD7CF;">
+    <span class="dir-tag" style="color:#9A8E86;">Direction 3 &nbsp;/&nbsp; Red as Primary &nbsp;/&nbsp; Light</span>
+    <div class="wordmark-wrap">
+      <!-- Full wordmark in red — no 'a' split, entire mark is Lacquer -->
+      <svg viewBox="0 0 512 79.63" height="44" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#8E1315">
+          <rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/>
+          <polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/>
+          <polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/>
+          <rect x="234.02" y="22.69" width="11.23" height="56.94"/>
+          <polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/>
+          <!-- 'a' in same red — unified mark -->
+          <rect x="338.48" y="23.46" width="68.6" height="11.23"/>
+          <path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/>
+          <rect x="500.77" y="22.69" width="11.23" height="56.94"/>
+          <polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/>
+        </g>
+      </svg>
+    </div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:#8E1315;line-height:2;max-width:480px;">Celebrated by interior designers, architects<br>and retailers over the world</div>
+  </div>
+
+  <div class="sect" style="border-bottom:0.5px solid #DDD7CF;">
+    <div class="sect-label" style="color:#9A8E86;">01 &nbsp; Colour Tokens</div>
+    <div class="sect-sublabel" style="color:#9A8E86;">Red as structural primary · entire wordmark in Lacquer</div>
+    <div class="swatch-grid"><div class="swatch" style="background:#F5F0EB;border:0.5px solid #DDD7CF;"><span class="sw-name" style="color:#9A8E86;">Ground &mdash; Warm White</span><span class="sw-vals" style="color:#9A8E86;">#F5F0EB &middot; CMYK 0 2 4 4</span></div><div class="swatch" style="background:#0E0B0A;"><span class="sw-name" style="color:#9A8E86;">Primary &mdash; Ink</span><span class="sw-vals" style="color:#9A8E86;">#0E0B0A &middot; CMYK 0 6 8 95</span></div><div class="swatch" style="background:#8E1315;"><span class="sw-name" style="color:#F5F0EB;">Accent &mdash; Lacquer</span><span class="sw-vals" style="color:#F5F0EB;">#8E1315 &middot; CMYK 0 87 85 44</span></div><div class="swatch" style="background:#DDD7CF;"><span class="sw-name" style="color:#6B635C;">Rule &mdash; Stone</span><span class="sw-vals" style="color:#6B635C;">#DDD7CF &middot; CMYK 0 3 6 13</span></div><div class="swatch" style="background:#9A8E86;"><span class="sw-name" style="color:#F5F0EB;">Muted Text &mdash; Ash</span><span class="sw-vals" style="color:#F5F0EB;">#9A8E86 &middot; CMYK 0 8 13 40</span></div><div class="swatch" style="background:#5C0D0F;"><span class="sw-name" style="color:#F5F0EB;">Surface &mdash; Deep Red</span><span class="sw-vals" style="color:#F5F0EB;">#5C0D0F &middot; CMYK 0 86 84 64</span></div></div>
+    <p class="sect-note" style="color:#9A8E86;">In this direction the entire wordmark runs in Lacquer — the 'a' distinction disappears because the whole mark asserts the brand colour. Red becomes structural: used for full-bleed sections, catalogue covers, exhibition panels, and packaging. A deeper red (#5C0D0F) provides layering depth without introducing a second hue family.</p>
+  </div>
+
+  <div class="sect" style="border-bottom:0.5px solid #DDD7CF;">
+    <div class="sect-label" style="color:#9A8E86;">02 &nbsp; Typography System</div>
+    <div class="sect-sublabel" style="color:#9A8E86;">Barlow Condensed (Display · Heading · Label) · Jost (Body · Caption · Utility)</div>
+    <div class="type-grid">
+      <div class="type-cell" style="background:#E8E2DA;">
+        <div class="type-role" style="color:#9A8E86;">Display</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:700;text-transform:uppercase;color:#8E1315;line-height:0.9;letter-spacing:0.01em;">Light<br>as<br>Form</div>
+        <div class="type-meta" style="color:#9A8E86;">Barlow Condensed Bold · 64–80px · all-caps at display<br>Campaign, cover titles, exhibition panels<br>Google Fonts OFL · commercial print permitted<br>Licensed alt: Compressed Gothic (Font Bureau)</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <div class="type-cell" style="background:#E8E2DA;"><div class="type-role" style="color:#9A8E86;">H1 · H2</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:600;text-transform:uppercase;color:#0E0B0A;line-height:1.1;letter-spacing:0.03em;">The Concentric<br>Collection</div><div class="type-meta" style="color:#9A8E86;">Barlow Condensed SemiBold · 22–28px · sentence case H2</div></div>
+        <div class="type-cell" style="background:#E8E2DA;"><div class="type-role" style="color:#9A8E86;">Subhead · Label · Nav</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:#0E0B0A;opacity:0.65;line-height:2.1;">Ceiling Pendant &nbsp;·&nbsp; Brass Finish<br>Crystal Diffuser &nbsp;·&nbsp; IP44 Rated</div><div class="type-meta" style="color:#9A8E86;">Barlow Condensed Regular · 11px · +0.22em · uppercase</div></div>
+        <div class="type-cell" style="background:#E8E2DA;"><div class="type-role" style="color:#9A8E86;">Body</div><div style="font-family:'Jost',sans-serif;font-size:14px;font-weight:300;color:#0E0B0A;opacity:0.65;line-height:1.85;max-width:320px;">Celebrated by interior designers, architects and retailers the world over — their collections can be found in some of the world's finest commercial and residential interiors.</div><div class="type-meta" style="color:#9A8E86;">Jost Light · 14px / 10.5pt print · body, descriptions</div></div>
+        <div class="type-cell" style="background:#E8E2DA;"><div class="type-role" style="color:#9A8E86;">Caption · Specs · Utility</div><div style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:0.1em;color:#9A8E86;line-height:2.1;">H: 420mm &nbsp;·&nbsp; W: 180mm &nbsp;·&nbsp; Ø: 120mm<br>SKU: ILL-CON-5BR &nbsp;·&nbsp; RRP: £1,840 ex. VAT</div><div class="type-meta" style="color:#9A8E86;">Jost Light · 9px / 7pt print · data, legal, footnotes</div></div>
+      </div>
+    </div>
+    <p class="sect-note" style="color:#9A8E86;">Barlow Condensed is architecturally condensed — its tall vertical geometry and sharp terminals echo the wordmark's own construction. Used across all heading roles it creates a unified, monolithic voice. Jost handles all body and utility text, providing a quieter register that lets the display face and the red do the personality work.</p>
+  </div>
+
+  <div class="sect" style="border-bottom:0.5px solid #DDD7CF;">
+    <div class="sect-label" style="color:#9A8E86;">03 &nbsp; Typography in Use</div>
+    <div class="sect-sublabel" style="color:#9A8E86;">Catalogue product spread — all roles working together</div>
+    <div class="type-in-use">
+      <div class="tiu-cell" style="background:#8E1315;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:rgba(245,240,235,0.45);margin-bottom:32px;">Collection &nbsp;·&nbsp; Crystal Series</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:700;text-transform:uppercase;color:#F5F0EB;line-height:0.95;margin-bottom:8px;">Concentric</div>
+        <div style="width:20px;height:0.5px;background:rgba(245,240,235,0.3);margin-bottom:24px;"></div>
+        <div style="font-family:'Jost',sans-serif;font-size:13px;font-weight:300;color:#F5F0EB;opacity:0.55;line-height:1.85;margin-bottom:32px;">A contemporary statement piece that brings aspiration, luxury and grandeur — multi-layered rings of crystal suspended in polished brass.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;">
+          <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:rgba(245,240,235,0.3);margin-bottom:4px;">Height</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;color:#F5F0EB;opacity:0.55;">420mm</div></div>
+          <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:rgba(245,240,235,0.3);margin-bottom:4px;">Diameter</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;color:#F5F0EB;opacity:0.55;">600mm</div></div>
+          <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:rgba(245,240,235,0.3);margin-bottom:4px;">Finish</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;color:#F5F0EB;opacity:0.55;">Polished Brass</div></div>
+          <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:rgba(245,240,235,0.3);margin-bottom:4px;">SKU</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;color:#F5F0EB;opacity:0.55;">ILL-CON-5BR</div></div>
+        </div>
+      </div>
+      <div class="tiu-cell" style="background:#E8E2DA;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:#9A8E86;margin-bottom:32px;">Featured In</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:600;text-transform:uppercase;color:#8E1315;line-height:1.1;margin-bottom:16px;">Amano Hotel<br>London</div>
+        <div style="font-family:'Jost',sans-serif;font-size:13px;font-weight:300;color:#0E0B0A;opacity:0.6;line-height:1.85;margin-bottom:28px;">Specified for the main lobby — a space requiring both ambient depth and architectural precision from a bespoke Illuminati installation.</div>
+        <div style="width:20px;height:1px;background:#8E1315;margin-bottom:16px;"></div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:#9A8E86;line-height:2.1;">Sector: Hospitality<br>Location: London, UK</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sect" style="border-bottom:0.5px solid #DDD7CF;">
+    <div class="sect-label" style="color:#9A8E86;">04 &nbsp; Spacing &amp; Grid</div>
+    <div class="sect-sublabel" style="color:#9A8E86;">Shared base system — 8px / 5mm dual grid · ×1.25</div>
+    <div class="token-grid">
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Base unit</span><span class="token-value" style="color:#0E0B0A;">8px</span><span class="token-alt" style="color:#9A8E86;">5mm print</span></div>
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Scale ratio</span><span class="token-value" style="color:#0E0B0A;">×1.250</span><span class="token-alt" style="color:#9A8E86;">Major Third</span></div>
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Body base</span><span class="token-value" style="color:#0E0B0A;">14px</span><span class="token-alt" style="color:#9A8E86;">10.5pt print</span></div>
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Line height</span><span class="token-value" style="color:#0E0B0A;">1.85</span><span class="token-alt" style="color:#9A8E86;">14pt leading</span></div>
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Column gutter</span><span class="token-value" style="color:#0E0B0A;">24px</span><span class="token-alt" style="color:#9A8E86;">6mm print</span></div>
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Page margin</span><span class="token-value" style="color:#0E0B0A;">56px</span><span class="token-alt" style="color:#9A8E86;">14mm print</span></div>
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Catalogue bleed</span><span class="token-value" style="color:#0E0B0A;">—</span><span class="token-alt" style="color:#9A8E86;">3mm all sides</span></div>
+      <div class="token-cell" style="background:#E8E2DA;"><span class="token-label" style="color:#9A8E86;">Safe zone</span><span class="token-value" style="color:#0E0B0A;">—</span><span class="token-alt" style="color:#9A8E86;">5mm from trim</span></div>
+    </div>
+  </div>
+
+  <div class="sect" style="padding-bottom:0;border-bottom:none;"><div class="sect-label" style="color:#9A8E86;">05 &nbsp; Applications</div><div class="sect-sublabel" style="color:#9A8E86;">Red used structurally · not as accent</div></div>
+  <div class="app-grid">
+    <div class="app-cell" style="background:#E8E2DA;"><div><span class="app-context" style="color:#9A8E86;">Digital · Website nav</span><svg viewBox="0 0 512 79.63" height="20" style="margin-top:8px;" xmlns="http://www.w3.org/2000/svg"><g fill="#8E1315"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div><div><div class="app-rule" style="background:#8E1315;"></div><div class="app-caption" style="color:#9A8E86;">Full red wordmark · light ground</div></div></div>
+    <div class="app-cell" style="background:#8E1315;"><div><span class="app-context" style="color:rgba(245,240,235,0.3);">Print · Catalogue cover</span><div style="font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:700;text-transform:uppercase;color:#F5F0EB;line-height:0.95;margin-top:12px;">The<br>Collections<br>2025–26</div></div><div style="width:16px;height:1px;background:rgba(245,240,235,0.35);"></div></div>
+    <div class="app-cell" style="background:#5C0D0F;"><div><span class="app-context" style="color:rgba(245,240,235,0.2);">Print · Deep red section</span><svg viewBox="0 0 512 79.63" height="18" style="margin-top:10px;" xmlns="http://www.w3.org/2000/svg"><g fill="#F5F0EB"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div><div><div class="app-rule" style="background:rgba(245,240,235,0.25);"></div><div class="app-caption" style="color:rgba(245,240,235,0.4);">Deep red · layering</div></div></div>
+    <div class="app-cell" style="background:#F5F0EB;border:0.5px solid #DDD7CF;"><div><span class="app-context" style="color:#9A8E86;">Print · Letterhead</span><div style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;color:#8E1315;line-height:1.6;margin-top:14px;">Illuminati Lighting UK Ltd</div><div style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:0.14em;color:#9A8E86;line-height:2.2;margin-top:6px;">illuminati-lighting.co.uk<br>+44 (0)20 0000 0000</div></div><div style="width:16px;height:1px;background:#8E1315;"></div></div>
+  </div>
+  <div class="fn" style="border-top:0.5px solid #DDD7CF;">D3 Light · Barlow Condensed + Jost (both Google Fonts / OFL · commercial print permitted) · entire wordmark in Lacquer red (#8E1315) · no accent split · Pantone reference TBC</div>
+</div>
+
+<!-- D3 DARK -->
+<div class="d3d mode-dark" style="background:#2B0405;min-height:100%;display:none;">
+  <div class="hero" style="border-bottom:0.5px solid #1C0203;">
+    <span class="dir-tag" style="color:rgba(245,240,235,0.4);">Direction 3 &nbsp;/&nbsp; Red as Primary &nbsp;/&nbsp; Dark</span>
+    <div class="wordmark-wrap">
+      <!-- On deep red ground: Lacquer wordmark, full mark unified, no knockout needed -->
+      <svg viewBox="0 0 512 79.63" height="44" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#8E1315">
+          <rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/>
+          <polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/>
+          <polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/>
+          <rect x="234.02" y="22.69" width="11.23" height="56.94"/>
+          <polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/>
+          <rect x="338.48" y="23.46" width="68.6" height="11.23"/>
+          <path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/>
+          <rect x="500.77" y="22.69" width="11.23" height="56.94"/>
+          <polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/>
+        </g>
+      </svg>
+    </div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:#F5F0EB;line-height:2;max-width:480px;opacity:0.75;">Celebrated by interior designers, architects<br>and retailers over the world</div>
+  </div>
+
+  <div class="sect" style="border-bottom:0.5px solid #1C0203;">
+    <div class="sect-label" style="color:rgba(245,240,235,0.4);">01 &nbsp; Colour Tokens — Near-Black Red Ground</div>
+    <div class="sect-sublabel" style="color:rgba(245,240,235,0.28);">Near-black with a red undertone carries the ground · Lacquer is the only warmth in the system</div>
+    <div class="swatch-grid"><div class="swatch" style="background:#2B0405;border:0.5px solid #1C0203;"><span class="sw-name" style="color:rgba(245,240,235,0.5);">Ground &mdash; Near-Black Red</span><span class="sw-vals" style="color:rgba(245,240,235,0.38);">#2B0405 &middot; CMYK 0 81 78 88</span></div><div class="swatch" style="background:#F5F0EB;"><span class="sw-name" style="color:#3A2820;">Primary &mdash; Warm White</span><span class="sw-vals" style="color:#3A2820;">#F5F0EB &middot; CMYK 0 2 4 4</span></div><div class="swatch" style="background:#8E1315;"><span class="sw-name" style="color:#F5F0EB;">Accent &mdash; Lacquer</span><span class="sw-vals" style="color:#F5F0EB;">#8E1315 &middot; CMYK 0 87 85 44</span></div><div class="swatch" style="background:#1C0203;"><span class="sw-name" style="color:rgba(245,240,235,0.5);">Rule</span><span class="sw-vals" style="color:rgba(245,240,235,0.38);">#1C0203 &middot; CMYK 0 79 76 93</span></div><div class="swatch" style="background:#A8645A;"><span class="sw-name" style="color:#3A1410;">Muted Text</span><span class="sw-vals" style="color:#3A1410;">#A8645A &middot; CMYK 0 41 47 34</span></div><div class="swatch" style="background:#0E0B0A;"><span class="sw-name" style="color:rgba(245,240,235,0.5);">Surface &mdash; Ink</span><span class="sw-vals" style="color:rgba(245,240,235,0.38);">#0E0B0A &middot; CMYK 0 6 8 95</span></div></div>
+    <p class="sect-note" style="color:rgba(245,240,235,0.4);">Lacquer at full saturation as a ground colour left nothing for the red to play against — every panel read at the same volume. A near-black ground with a red undertone (#2B0405) now carries the space, giving Lacquer room to function as a genuine accent: on the wordmark, on rules, on the case-study headline. This is the deepest version of the system — Lacquer reads as the only warmth in the room rather than competing with its own ground. Note: Lacquer-on-ground contrast here is decorative-grade only (logotype, large display text) — body copy and functional text stay in Warm White throughout.</p>
+  </div>
+
+  <div class="sect" style="border-bottom:0.5px solid #1C0203;">
+    <div class="sect-label" style="color:rgba(245,240,235,0.4);">02 · 03 &nbsp; Typography &amp; In Use — Near-Black Red Ground</div>
+    <div class="type-in-use">
+      <div class="tiu-cell" style="background:#1C0203;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:rgba(245,240,235,0.35);margin-bottom:32px;">Collection &nbsp;·&nbsp; Crystal Series</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:700;text-transform:uppercase;color:#F5F0EB;line-height:0.95;margin-bottom:8px;">Concentric</div>
+        <div style="width:20px;height:1px;background:#8E1315;margin-bottom:24px;"></div>
+        <div style="font-family:'Jost',sans-serif;font-size:13px;font-weight:300;color:#F5F0EB;opacity:0.55;line-height:1.85;margin-bottom:32px;">A contemporary statement piece that brings aspiration, luxury and grandeur — multi-layered rings of crystal suspended in polished brass.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;">
+          <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:rgba(245,240,235,0.3);margin-bottom:4px;">Height</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;color:#F5F0EB;opacity:0.55;">420mm</div></div>
+          <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:rgba(245,240,235,0.3);margin-bottom:4px;">Diameter</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;color:#F5F0EB;opacity:0.55;">600mm</div></div>
+          <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:rgba(245,240,235,0.3);margin-bottom:4px;">Finish</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;color:#F5F0EB;opacity:0.55;">Polished Brass</div></div>
+          <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:rgba(245,240,235,0.3);margin-bottom:4px;">SKU</div><div style="font-family:'Jost',sans-serif;font-size:10.5px;color:#F5F0EB;opacity:0.55;">ILL-CON-5BR</div></div>
+        </div>
+      </div>
+      <div class="tiu-cell" style="background:#220304;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:rgba(245,240,235,0.35);margin-bottom:32px;">Featured In</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:600;text-transform:uppercase;color:#F5F0EB;line-height:1.1;margin-bottom:16px;">Amano Hotel<br>London</div>
+        <div style="font-family:'Jost',sans-serif;font-size:13px;font-weight:300;color:#F5F0EB;opacity:0.5;line-height:1.85;margin-bottom:28px;">Specified for the main lobby — a space requiring both ambient depth and architectural precision.</div>
+        <div style="width:20px;height:1px;background:#8E1315;margin-bottom:16px;"></div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:rgba(245,240,235,0.35);line-height:2.1;">Sector: Hospitality<br>Location: London, UK</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sect" style="padding-bottom:0;border-bottom:none;"><div class="sect-label" style="color:rgba(245,240,235,0.4);">04 &nbsp; Applications — Near-Black Red Ground</div></div>
+  <div class="app-grid">
+    <div class="app-cell" style="background:#1C0203;"><div><span class="app-context" style="color:rgba(245,240,235,0.25);">Digital · Nav on near-black red</span><svg viewBox="0 0 512 79.63" height="20" style="margin-top:8px;" xmlns="http://www.w3.org/2000/svg"><g fill="#F5F0EB"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div><div><div class="app-rule" style="background:#8E1315;"></div><div class="app-caption" style="color:rgba(245,240,235,0.4);">Unified warm white mark</div></div></div>
+    <div class="app-cell" style="background:#0E0B0A;"><div><span class="app-context" style="color:rgba(245,240,235,0.2);">Print · Ink contrast panel</span><div style="font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:700;text-transform:uppercase;color:#8E1315;line-height:0.95;margin-top:12px;">The<br>Collections<br>2025–26</div></div><div style="width:16px;height:1px;background:#8E1315;"></div></div>
+    <div class="app-cell" style="background:#8E1315;"><div><span class="app-context" style="color:rgba(245,240,235,0.3);">Digital · Campaign accent</span><svg viewBox="0 0 512 79.63" height="18" style="margin-top:10px;" xmlns="http://www.w3.org/2000/svg"><g fill="#F5F0EB"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div><div><div class="app-rule" style="background:rgba(245,240,235,0.3);"></div><div class="app-caption" style="color:rgba(245,240,235,0.5);">Lacquer accent ground</div></div></div>
+    <div class="app-cell" style="background:#F5F0EB;"><div><span class="app-context" style="color:#9A8E86;">Print · Letterhead reversed</span><div style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;color:#8E1315;line-height:1.6;margin-top:14px;">Illuminati Lighting UK Ltd</div><div style="font-family:'Jost',sans-serif;font-size:9px;font-weight:300;letter-spacing:0.14em;color:#9A8E86;line-height:2.2;margin-top:6px;">illuminati-lighting.co.uk<br>+44 (0)20 0000 0000</div></div><div style="width:16px;height:1px;background:#8E1315;"></div></div>
+  </div>
+  <div class="fn" style="border-top:0.5px solid #1C0203;">D3 Dark · Barlow Condensed + Jost (both OFL) · Near-black red (#2B0405) ground · Lacquer (#8E1315) is the sole accent · no knockout treatment needed</div>
+</div>
+</div><!-- /p3 -->
+
+</div><!-- /stage -->
+
+<script>
+let currentMode = 'light';
+
+// ── SCROLL REVEALS ──
+const REVEAL_SELECTOR = '.sect, .hero, .app-grid, .fn';
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.target.closest('.panel.active')) {
+      e.target.classList.add('revealed');
+    }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -32px 0px' });
+
+function observeAll() {
+  document.querySelectorAll(REVEAL_SELECTOR).forEach(el => io.observe(el));
+}
+
+// ── PANEL SWITCH ──
+function show(n, btn) {
+  const incoming = document.getElementById('p' + n);
+  // Reset reveals in the incoming panel so content re-animates on revisit
+  incoming.querySelectorAll('.revealed').forEach(el => el.classList.remove('revealed'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  incoming.classList.add('active');
+  btn.classList.add('active');
+  incoming.scrollTop = 0;
+  // Re-trigger IO for newly visible panel
+  io.disconnect();
+  observeAll();
+}
+
+// ── MODE SWITCH ──
+function setMode(mode, btn) {
+  if (mode === currentMode) return;
+  const stage = document.querySelector('.stage');
+  stage.classList.add('mode-fading');
+  setTimeout(() => {
+    currentMode = mode;
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    // Reset all reveals while stage is invisible — clean re-animation
+    document.querySelectorAll('.revealed').forEach(el => el.classList.remove('revealed'));
+    document.querySelectorAll('.mode-light').forEach(el => el.style.display = mode === 'light' ? 'block' : 'none');
+    document.querySelectorAll('.mode-dark').forEach(el => el.style.display = mode === 'dark' ? 'block' : 'none');
+    document.querySelectorAll('.panel.active').forEach(p => p.scrollTop = 0);
+    stage.classList.remove('mode-fading');
+    io.disconnect();
+    observeAll();
+  }, 250);
+}
+
+observeAll();
+</script>
+</body>
+</html>
