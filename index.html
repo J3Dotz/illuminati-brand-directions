@@ -15,12 +15,17 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
 /* ── NAV ── */
 .nav { flex-shrink: 0; background: #080706; border-bottom: 0.5px solid #222; }
 .nav-row1 { height: 40px; display: flex; align-items: center; padding: 0 40px; border-bottom: 0.5px solid #1A1A1A; justify-content: space-between; }
-.nav-brand { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: #3A3A3A; white-space: nowrap; }
+.snav-row { height: 44px; display: flex; align-items: center; padding: 0 40px; justify-content: space-between; border-bottom: 0.5px solid #1A1A1A; }
+.snav-wm { display: flex; align-items: center; text-decoration: none; }
+.snav-tabs { display: flex; align-items: center; }
+.snav-tab { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: #888; padding: 0 20px; text-decoration: none; transition: color 0.15s; white-space: nowrap; }
+.snav-tab:hover { color: #B0A89E; }
+.snav-tab.active { color: #E0DAD2; }
 .nav-mode-toggle { display: flex; gap: 6px; }
-.mode-btn { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; color: #444; background: none; border: 0.5px solid #2A2A2A; padding: 4px 14px; cursor: pointer; transition: all 0.15s; }
+.mode-btn { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; color: #888; background: none; border: 0.5px solid #2A2A2A; padding: 4px 14px; cursor: pointer; transition: all 0.15s; }
 .mode-btn.active { color: #E0DAD2; border-color: #555; background: #1A1A1A; }
 .nav-row2 { height: 44px; display: flex; align-items: stretch; padding: 0 40px; }
-.nav-tab { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: #444; padding: 0 22px; height: 100%; display: flex; align-items: center; cursor: pointer; border: none; background: none; border-bottom: 1.5px solid transparent; transition: color 0.15s, border-color 0.15s; white-space: nowrap; }
+.nav-tab { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: #888; padding: 0 22px; height: 100%; display: flex; align-items: center; cursor: pointer; border: none; background: none; border-bottom: 1.5px solid transparent; transition: color 0.15s, border-color 0.15s; white-space: nowrap; }
 .nav-tab:hover { color: #888; }
 .nav-tab.active { color: #E0DAD2; border-bottom-color: #E0DAD2; }
 
@@ -115,11 +120,11 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
 @media (max-width: 1024px) {
   .hero, .sect { padding-left: 32px; padding-right: 32px; }
   .fn { padding-left: 32px; padding-right: 32px; }
-  .nav-row1, .nav-row2 { padding: 0 24px; }
+  .snav-row, .nav-row2 { padding: 0 24px; }
 }
 @media (max-width: 720px) {
-  .nav-brand { display: none; }
-  .nav-row1 { padding: 0 16px; justify-content: flex-end; }
+  .snav-row { padding: 0 12px; }
+  .snav-tab { padding: 0 10px; font-size: 8px; letter-spacing: 0.1em; }
   .nav-row2 { padding: 0 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .nav-row2::-webkit-scrollbar { display: none; }
   .nav-tab { padding: 0 12px; font-size: 8px; letter-spacing: 0.1em; white-space: nowrap; }
@@ -139,11 +144,16 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
 <body>
 
 <nav class="nav">
-  <div class="nav-row1">
-    <span class="nav-brand">Illuminati Lighting UK &nbsp;·&nbsp; Brand System Directions &nbsp;·&nbsp; June 2026</span>
+  <div class="snav-row">
+    <a class="snav-wm" href="index.html"><svg viewBox="0 0 512 79.63" height="18" xmlns="http://www.w3.org/2000/svg" style="display:block"><g fill="#E0DAD2"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></a>
+    <div class="snav-tabs">
+      <a class="snav-tab active" href="index.html">Brand Directions</a>
+      <a class="snav-tab" href="favicons.html">1B.6 · Favicon</a>
+      <a class="snav-tab" href="concept.html">Website Concept</a>
+    </div>
     <div class="nav-mode-toggle">
-      <button class="mode-btn active" onclick="setMode('light',this)">Light</button>
-      <button class="mode-btn" onclick="setMode('dark',this)">Dark</button>
+      <button class="mode-btn" data-mode="light" onclick="setMode('light',this)">Light</button>
+      <button class="mode-btn" data-mode="dark" onclick="setMode('dark',this)">Dark</button>
     </div>
   </div>
   <div class="nav-row2">
@@ -643,7 +653,7 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
 </div><!-- /stage -->
 
 <script>
-let currentMode = 'light';
+let currentMode = localStorage.getItem('ill-mode') || 'light';
 
 // ── SCROLL REVEALS ──
 const REVEAL_SELECTOR = '.sect, .hero, .app-grid, .fn';
@@ -678,6 +688,7 @@ function show(n, btn) {
 // ── MODE SWITCH ──
 function setMode(mode, btn) {
   if (mode === currentMode) return;
+  localStorage.setItem('ill-mode', mode);
   const stage = document.querySelector('.stage');
   stage.classList.add('mode-fading');
   setTimeout(() => {
@@ -696,6 +707,14 @@ function setMode(mode, btn) {
 }
 
 observeAll();
+// Sync button state and panels with saved mode (no transition on load)
+(function(){
+  document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('active', b.dataset.mode === currentMode));
+  if (currentMode === 'dark') {
+    document.querySelectorAll('.mode-light').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.mode-dark').forEach(el => el.style.display = 'block');
+  }
+})();
 </script>
 </body>
 </html>
