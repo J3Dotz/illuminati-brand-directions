@@ -130,6 +130,7 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
   height: 100vh;
   background: #0A0806;
   overflow: hidden;
+  transition: opacity 300ms ease;
 }
 .hero-gradient {
   position: absolute;
@@ -138,14 +139,6 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
   z-index: 1;
   pointer-events: none;
 }
-.hero-wm {
-  position: absolute;
-  top: 40px; left: 40px;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 700ms ease 200ms;
-}
-.hero-wm.loaded { opacity: 1; }
 .hero-text {
   position: absolute;
   bottom: 56px; left: 56px;
@@ -173,15 +166,6 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
   color: #F1ECE5;
   line-height: 0.95;
 }
-.hero-cover {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 0;
-  background: var(--bg);
-  z-index: 3;
-  pointer-events: none;
-}
-
 /* ── PROJECTS CAROUSEL ── */
 .projects-section {
   position: relative;
@@ -284,17 +268,6 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
   transition: background 0.2s, transform 0.2s;
 }
 .carousel-dot.active { background: #F1ECE5; transform: scale(1.3); }
-
-/* ── PATTERN STRIP ── */
-.pattern-strip {
-  width: 100%;
-  height: 180px;
-  background: #0A0806;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-.pattern-strip.revealed { opacity: 1; }
 
 /* ── BESPOKE SECTION ── */
 .bespoke-section {
@@ -451,8 +424,8 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
     <a class="snav-wm" href="index.html"><svg viewBox="0 0 512 79.63" height="18" xmlns="http://www.w3.org/2000/svg" style="display:block"><g fill="#E0DAD2"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></a>
     <div class="snav-tabs">
       <a class="snav-tab" href="index.html">Brand Directions</a>
-      <a class="snav-tab" href="favicons.html">1B.6 · Favicon</a>
-      <a class="snav-tab active" href="concept.html">Website Concept</a>
+      <a class="snav-tab" href="favicons.html">Favicon</a>
+      <a class="snav-tab active" href="concept.html">Brand in Use</a>
     </div>
     <div class="snav-mode">
       <button class="mode-btn" data-mode="light" onclick="setMode('light',this)">Light</button>
@@ -496,30 +469,13 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
 
   <!-- SECTION 1 — HERO -->
   <section class="hero-section" id="hero">
-    <div class="hero-gradient"></div>
-    <div class="hero-wm" id="heroWm">
-      <svg viewBox="0 0 512 79.63" height="24" xmlns="http://www.w3.org/2000/svg" style="display:block">
-        <g fill="var(--primary)">
-          <rect y="22.69" width="11.23" height="56.94"/>
-          <rect x="24.07" y=".12" width="11.23" height="79.51"/>
-          <rect x="48.13" y=".12" width="11.23" height="79.51"/>
-          <polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/>
-          <polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/>
-          <rect x="234.02" y="22.69" width="11.23" height="56.94"/>
-          <polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/>
-          <rect x="338.48" y="23.46" width="68.6" height="11.23" fill="#8A6A3A"/>
-          <path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z" fill="#8A6A3A"/>
-          <rect x="500.77" y="22.69" width="11.23" height="56.94"/>
-          <polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/>
-        </g>
-      </svg>
-    </div>
-    <div class="hero-text" id="heroText">
+    <img src="assets/patterns/ILL-Pattern_2.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.2;mix-blend-mode:overlay;pointer-events:none;z-index:0;" onerror="this.style.display='none'" />
+    <div class="hero-gradient" style="z-index:1;"></div>
+    <div class="hero-text" id="heroText" style="z-index:2;">
       <span class="hero-label">Illuminati Lighting UK</span>
       <div class="hero-rule"></div>
       <h1 class="hero-headline">Where material<br>and light arrive<br>at the same answer</h1>
     </div>
-    <div class="hero-cover" id="heroCover"></div>
   </section>
 
   <!-- SECTION 2 — PROJECTS CAROUSEL -->
@@ -527,7 +483,8 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
     <div class="carousel-track" id="carouselTrack">
 
       <div class="carousel-slide">
-        <div class="slide-atmosphere">Amano Hotel</div>
+        <div class="slide-atmosphere" style="opacity:0.03;">Amano Hotel</div>
+        <img src="assets/photos/1-Hallway.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:lighten;" onerror="this.style.display='none'" />
         <div class="slide-info active">
           <span class="slide-location">London, UK</span>
           <span class="slide-name">Amano Hotel</span>
@@ -537,6 +494,7 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
 
       <div class="carousel-slide">
         <div class="slide-atmosphere">Private Residence</div>
+        <img src="assets/photos/2-LivingRoom.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:lighten;" onerror="this.style.display='none'" />
         <div class="slide-info">
           <span class="slide-location">Mayfair, London</span>
           <span class="slide-name">Private Residence</span>
@@ -546,6 +504,7 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
 
       <div class="carousel-slide">
         <div class="slide-atmosphere">The Arts Club</div>
+        <img src="assets/photos/3-HotelLobby.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:lighten;" onerror="this.style.display='none'" />
         <div class="slide-info">
           <span class="slide-location">Dubai, UAE</span>
           <span class="slide-name">The Arts Club</span>
@@ -563,15 +522,10 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
     </div>
   </section>
 
-  <!-- PATTERN STRIP -->
-  <div class="pattern-strip" id="patternStrip">
-    <img src="assets/patterns/ILL-Pattern_4.jpg" style="width:100%;height:100%;object-fit:cover;opacity:0.55;" onerror="this.style.display='none'" />
-  </div>
-
   <!-- SECTION 3 — BESPOKE SERVICE -->
   <section class="bespoke-section" id="bespoke">
     <div class="bespoke-left" id="bespokeLeft">
-      <div class="bespoke-left-atm">Bespoke</div>
+      <img src="assets/photos/4-BespokeLighting.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:lighten;" onerror="this.style.display='none'" />
     </div>
     <div class="bespoke-right" id="bespokeRight">
       <div class="bespoke-inner">
@@ -627,25 +581,21 @@ function setMode(mode) {
 
 // ── HERO ENTRANCE ──
 window.addEventListener('load', () => {
-  document.getElementById('heroWm').classList.add('loaded');
   document.getElementById('heroText').classList.add('loaded');
 });
 
-// ── SCROLL: site nav + hero cover ──
+// ── SCROLL: site nav ──
 const siteNav = document.getElementById('siteNav');
-const heroCover = document.getElementById('heroCover');
 const hero = document.getElementById('hero');
 
 window.addEventListener('scroll', () => {
-  const sy = window.scrollY;
-
-  // site nav
-  siteNav.classList.toggle('scrolled', sy > 80);
-
-  // hero cover slides up from bottom
-  const heroH = hero.offsetHeight;
-  heroCover.style.height = Math.min(sy, heroH) + 'px';
+  siteNav.classList.toggle('scrolled', window.scrollY > 80);
 }, { passive: true });
+
+// ── HERO FADE ON SCROLL ──
+new IntersectionObserver(entries => {
+  entries.forEach(e => { hero.style.opacity = e.isIntersecting ? 1 : 0; });
+}, { threshold: 0.05 }).observe(hero);
 
 // ── CAROUSEL ──
 let current = 0;
@@ -679,10 +629,6 @@ proj.addEventListener('touchend', e => {
 }, { passive: true });
 
 // ── INTERSECTION OBSERVERS ──
-new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
-}, { threshold: 0.2 }).observe(document.getElementById('patternStrip'));
-
 new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
