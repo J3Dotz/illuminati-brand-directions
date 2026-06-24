@@ -166,15 +166,15 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
       <a class="snav-tab" href="favicons.html">Favicon</a>
       <a class="snav-tab" href="concept.html">Brand in Use</a>
     </div>
-    <div class="nav-mode-toggle">
-      <button class="mode-btn" data-mode="light" onclick="setMode('light',this)">Light</button>
-      <button class="mode-btn" data-mode="dark" onclick="setMode('dark',this)">Dark</button>
-    </div>
   </div>
   <div class="nav-row2">
     <button class="nav-tab active" onclick="show(1,this)">Direction 1 — Intentional Red</button>
     <button class="nav-tab" onclick="show(2,this)">Direction 2 — Mineral &amp; Restraint</button>
     <button class="nav-tab" onclick="show(3,this)">Direction 3 — Red as Primary</button>
+    <div class="nav-mode-toggle" style="margin-left:auto;display:flex;align-items:center;">
+      <button class="mode-btn" data-mode="light" onclick="setMode('light',this)">Light</button>
+      <button class="mode-btn" data-mode="dark" onclick="setMode('dark',this)">Dark</button>
+    </div>
   </div>
 </nav>
 
