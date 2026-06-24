@@ -15,16 +15,17 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
 /* ── NAV ── */
 .nav { flex-shrink: 0; background: #080706; border-bottom: 0.5px solid #222; }
 .nav-row1 { height: 40px; display: flex; align-items: center; padding: 0 40px; border-bottom: 0.5px solid #1A1A1A; justify-content: space-between; }
-.snav-row { height: 44px; display: flex; align-items: center; padding: 0 40px; justify-content: space-between; border-bottom: 0.5px solid #1A1A1A; }
+.snav-row { height: 44px; display: flex; align-items: center; padding: 0 40px; position: relative; border-bottom: 0.5px solid #1A1A1A; }
 .snav-wm { display: flex; align-items: center; text-decoration: none; }
-.snav-tabs { display: flex; align-items: center; }
+.snav-tabs { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; }
 .snav-tab { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: #888; padding: 0 20px; text-decoration: none; transition: color 0.15s; white-space: nowrap; }
 .snav-tab:hover { color: #B0A89E; }
 .snav-tab.active { color: #E0DAD2; }
 .nav-mode-toggle { display: flex; gap: 6px; }
 .mode-btn { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; color: #888; background: none; border: 0.5px solid #2A2A2A; padding: 4px 14px; cursor: pointer; transition: all 0.15s; }
 .mode-btn.active { color: #E0DAD2; border-color: #555; background: #1A1A1A; }
-.nav-row2 { height: 44px; display: flex; align-items: stretch; padding: 0 40px; }
+.nav-row2 { height: 44px; display: flex; align-items: stretch; padding: 0 40px; position: relative; justify-content: center; }
+.nav-tabs-group { display: flex; align-items: stretch; }
 .nav-tab { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: #888; padding: 0 22px; height: 100%; display: flex; align-items: center; cursor: pointer; border: none; background: none; border-bottom: 1.5px solid transparent; transition: color 0.15s, border-color 0.15s; white-space: nowrap; }
 .nav-tab:hover { color: #888; }
 .nav-tab.active { color: #E0DAD2; border-bottom-color: #E0DAD2; }
@@ -168,10 +169,12 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
     </div>
   </div>
   <div class="nav-row2">
-    <button class="nav-tab active" onclick="show(1,this)">Direction 1 — Intentional Red</button>
-    <button class="nav-tab" onclick="show(2,this)">Direction 2 — Mineral &amp; Restraint</button>
-    <button class="nav-tab" onclick="show(3,this)">Direction 3 — Red as Primary</button>
-    <div class="nav-mode-toggle" style="margin-left:auto;display:flex;align-items:center;">
+    <div class="nav-tabs-group">
+      <button class="nav-tab active" onclick="show(1,this)">Direction 1 — Intentional Red</button>
+      <button class="nav-tab" onclick="show(2,this)">Direction 2 — Mineral &amp; Restraint</button>
+      <button class="nav-tab" onclick="show(3,this)">Direction 3 — Red as Primary</button>
+    </div>
+    <div class="nav-mode-toggle" style="position:absolute;right:40px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:6px;">
       <button class="mode-btn" data-mode="light" onclick="setMode('light',this)">Light</button>
       <button class="mode-btn" data-mode="dark" onclick="setMode('dark',this)">Dark</button>
     </div>
