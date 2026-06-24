@@ -124,6 +124,13 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
 .d3l{--c-ground:#F5F0EB;--c-primary:#0E0B0A;--c-accent:#8E1315;--c-rule:#DDD7CF;--c-muted:#9A8E86;--c-surface:#E8E2DA;}
 .d3d{--c-ground:#2B0405;--c-primary:#F5F0EB;--c-accent:#8E1315;--c-rule:#1C0203;--c-muted:rgba(245,240,235,0.4);--c-surface:#0E0B0A;}
 
+/* ── PATTERN GRID ── */
+.pattern-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 20px; }
+.pattern-tile img { width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover; filter: grayscale(1); }
+.pattern-caption { padding: 10px 0 4px; }
+.pattern-name { display: block; font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--c-primary); }
+.pattern-ref { display: block; font-family: 'Jost', sans-serif; font-size: 8px; font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-muted); margin-top: 3px; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .hero, .sect { padding-left: 32px; padding-right: 32px; }
@@ -283,8 +290,52 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
   <!-- 04 PATTERN SYSTEM -->
   <div class="sect" style="border-bottom:0.5px solid var(--c-rule);">
     <div class="sect-label" style="color:var(--c-muted);">04 &nbsp; Pattern System</div>
-    <div class="sect-sublabel" style="color:var(--c-muted);">Geometric motifs &middot; Tile rules &middot; Scale &middot; Repeat specifications</div>
-    <p class="sect-note" style="color:var(--c-muted);">Pattern assets TBC — to be developed from the wordmark geometry and structural grid.</p>
+    <div class="sect-sublabel" style="color:var(--c-muted);">Six patterns &middot; Collection references &middot; Architectural application</div>
+    <p class="sect-note" style="color:var(--c-muted);">Inspired by collections including Jewel, Diamante, Cerchio, Molecular, Quartz Halo and Zenna — these patterns form a long-term strategic asset for the brand, developed from the geometric and material vocabulary of the collection range and designed to speak the visual language of interior designers and architects.</p>
+    <div class="pattern-grid">
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_1.jpg" alt="Light Dispersion" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Light Dispersion</span>
+          <span class="pattern-ref">Jewel</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_2.jpg" alt="Circuit Grid" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Circuit Grid</span>
+          <span class="pattern-ref">Molecular</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_3.jpg" alt="Suspended Crystal" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Suspended Crystal</span>
+          <span class="pattern-ref">Zenna</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_4.jpg" alt="Concentric Orbit" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Concentric Orbit</span>
+          <span class="pattern-ref">Quartz Halo</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_5.jpg" alt="Elliptical Orbit" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Elliptical Orbit</span>
+          <span class="pattern-ref">Cerchio</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_6.jpg" alt="Diffraction Field" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Diffraction Field</span>
+          <span class="pattern-ref">Diamante</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 05 FAVICON -->
@@ -347,8 +398,52 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
   <!-- 04 PATTERN SYSTEM -->
   <div class="sect" style="border-bottom:0.5px solid var(--c-rule);">
     <div class="sect-label" style="color:var(--c-muted);">04 &nbsp; Pattern System</div>
-    <div class="sect-sublabel" style="color:var(--c-muted);">Geometric motifs &middot; Tile rules &middot; Scale &middot; Repeat specifications</div>
-    <p class="sect-note" style="color:var(--c-muted);">Pattern assets TBC — to be developed from the wordmark geometry and structural grid.</p>
+    <div class="sect-sublabel" style="color:var(--c-muted);">Six patterns &middot; Collection references &middot; Architectural application</div>
+    <p class="sect-note" style="color:var(--c-muted);">Inspired by collections including Jewel, Diamante, Cerchio, Molecular, Quartz Halo and Zenna — these patterns form a long-term strategic asset for the brand, developed from the geometric and material vocabulary of the collection range and designed to speak the visual language of interior designers and architects.</p>
+    <div class="pattern-grid">
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_1.jpg" alt="Light Dispersion" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Light Dispersion</span>
+          <span class="pattern-ref">Jewel</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_2.jpg" alt="Circuit Grid" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Circuit Grid</span>
+          <span class="pattern-ref">Molecular</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_3.jpg" alt="Suspended Crystal" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Suspended Crystal</span>
+          <span class="pattern-ref">Zenna</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_4.jpg" alt="Concentric Orbit" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Concentric Orbit</span>
+          <span class="pattern-ref">Quartz Halo</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_5.jpg" alt="Elliptical Orbit" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Elliptical Orbit</span>
+          <span class="pattern-ref">Cerchio</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_6.jpg" alt="Diffraction Field" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Diffraction Field</span>
+          <span class="pattern-ref">Diamante</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 05 FAVICON -->
@@ -457,8 +552,52 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
   <!-- 04 PATTERN SYSTEM -->
   <div class="sect" style="border-bottom:0.5px solid var(--c-rule);">
     <div class="sect-label" style="color:var(--c-muted);">04 &nbsp; Pattern System</div>
-    <div class="sect-sublabel" style="color:var(--c-muted);">Geometric motifs &middot; Tile rules &middot; Scale &middot; Repeat specifications</div>
-    <p class="sect-note" style="color:var(--c-muted);">Pattern assets TBC — to be developed from the wordmark geometry and structural grid.</p>
+    <div class="sect-sublabel" style="color:var(--c-muted);">Six patterns &middot; Collection references &middot; Architectural application</div>
+    <p class="sect-note" style="color:var(--c-muted);">Inspired by collections including Jewel, Diamante, Cerchio, Molecular, Quartz Halo and Zenna — these patterns form a long-term strategic asset for the brand, developed from the geometric and material vocabulary of the collection range and designed to speak the visual language of interior designers and architects.</p>
+    <div class="pattern-grid">
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_1.jpg" alt="Light Dispersion" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Light Dispersion</span>
+          <span class="pattern-ref">Jewel</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_2.jpg" alt="Circuit Grid" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Circuit Grid</span>
+          <span class="pattern-ref">Molecular</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_3.jpg" alt="Suspended Crystal" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Suspended Crystal</span>
+          <span class="pattern-ref">Zenna</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_4.jpg" alt="Concentric Orbit" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Concentric Orbit</span>
+          <span class="pattern-ref">Quartz Halo</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_5.jpg" alt="Elliptical Orbit" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Elliptical Orbit</span>
+          <span class="pattern-ref">Cerchio</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_6.jpg" alt="Diffraction Field" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Diffraction Field</span>
+          <span class="pattern-ref">Diamante</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 05 FAVICON -->
@@ -520,8 +659,52 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
   <!-- 04 PATTERN SYSTEM -->
   <div class="sect" style="border-bottom:0.5px solid var(--c-rule);">
     <div class="sect-label" style="color:var(--c-muted);">04 &nbsp; Pattern System</div>
-    <div class="sect-sublabel" style="color:var(--c-muted);">Geometric motifs &middot; Tile rules &middot; Scale &middot; Repeat specifications</div>
-    <p class="sect-note" style="color:var(--c-muted);">Pattern assets TBC — to be developed from the wordmark geometry and structural grid.</p>
+    <div class="sect-sublabel" style="color:var(--c-muted);">Six patterns &middot; Collection references &middot; Architectural application</div>
+    <p class="sect-note" style="color:var(--c-muted);">Inspired by collections including Jewel, Diamante, Cerchio, Molecular, Quartz Halo and Zenna — these patterns form a long-term strategic asset for the brand, developed from the geometric and material vocabulary of the collection range and designed to speak the visual language of interior designers and architects.</p>
+    <div class="pattern-grid">
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_1.jpg" alt="Light Dispersion" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Light Dispersion</span>
+          <span class="pattern-ref">Jewel</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_2.jpg" alt="Circuit Grid" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Circuit Grid</span>
+          <span class="pattern-ref">Molecular</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_3.jpg" alt="Suspended Crystal" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Suspended Crystal</span>
+          <span class="pattern-ref">Zenna</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_4.jpg" alt="Concentric Orbit" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Concentric Orbit</span>
+          <span class="pattern-ref">Quartz Halo</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_5.jpg" alt="Elliptical Orbit" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Elliptical Orbit</span>
+          <span class="pattern-ref">Cerchio</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_6.jpg" alt="Diffraction Field" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Diffraction Field</span>
+          <span class="pattern-ref">Diamante</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 05 FAVICON -->
@@ -649,8 +832,52 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
   <!-- 04 PATTERN SYSTEM -->
   <div class="sect" style="border-bottom:0.5px solid var(--c-rule);">
     <div class="sect-label" style="color:var(--c-muted);">04 &nbsp; Pattern System</div>
-    <div class="sect-sublabel" style="color:var(--c-muted);">Geometric motifs &middot; Tile rules &middot; Scale &middot; Repeat specifications</div>
-    <p class="sect-note" style="color:var(--c-muted);">Pattern assets TBC — to be developed from the wordmark geometry and structural grid.</p>
+    <div class="sect-sublabel" style="color:var(--c-muted);">Six patterns &middot; Collection references &middot; Architectural application</div>
+    <p class="sect-note" style="color:var(--c-muted);">Inspired by collections including Jewel, Diamante, Cerchio, Molecular, Quartz Halo and Zenna — these patterns form a long-term strategic asset for the brand, developed from the geometric and material vocabulary of the collection range and designed to speak the visual language of interior designers and architects.</p>
+    <div class="pattern-grid">
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_1.jpg" alt="Light Dispersion" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Light Dispersion</span>
+          <span class="pattern-ref">Jewel</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_2.jpg" alt="Circuit Grid" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Circuit Grid</span>
+          <span class="pattern-ref">Molecular</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_3.jpg" alt="Suspended Crystal" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Suspended Crystal</span>
+          <span class="pattern-ref">Zenna</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_4.jpg" alt="Concentric Orbit" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Concentric Orbit</span>
+          <span class="pattern-ref">Quartz Halo</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_5.jpg" alt="Elliptical Orbit" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Elliptical Orbit</span>
+          <span class="pattern-ref">Cerchio</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_6.jpg" alt="Diffraction Field" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Diffraction Field</span>
+          <span class="pattern-ref">Diamante</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 05 FAVICON -->
@@ -731,8 +958,52 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
   <!-- 04 PATTERN SYSTEM -->
   <div class="sect" style="border-bottom:0.5px solid var(--c-rule);">
     <div class="sect-label" style="color:var(--c-muted);">04 &nbsp; Pattern System</div>
-    <div class="sect-sublabel" style="color:var(--c-muted);">Geometric motifs &middot; Tile rules &middot; Scale &middot; Repeat specifications</div>
-    <p class="sect-note" style="color:var(--c-muted);">Pattern assets TBC — to be developed from the wordmark geometry and structural grid.</p>
+    <div class="sect-sublabel" style="color:var(--c-muted);">Six patterns &middot; Collection references &middot; Architectural application</div>
+    <p class="sect-note" style="color:var(--c-muted);">Inspired by collections including Jewel, Diamante, Cerchio, Molecular, Quartz Halo and Zenna — these patterns form a long-term strategic asset for the brand, developed from the geometric and material vocabulary of the collection range and designed to speak the visual language of interior designers and architects.</p>
+    <div class="pattern-grid">
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_1.jpg" alt="Light Dispersion" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Light Dispersion</span>
+          <span class="pattern-ref">Jewel</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_2.jpg" alt="Circuit Grid" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Circuit Grid</span>
+          <span class="pattern-ref">Molecular</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_3.jpg" alt="Suspended Crystal" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Suspended Crystal</span>
+          <span class="pattern-ref">Zenna</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_4.jpg" alt="Concentric Orbit" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Concentric Orbit</span>
+          <span class="pattern-ref">Quartz Halo</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_5.jpg" alt="Elliptical Orbit" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Elliptical Orbit</span>
+          <span class="pattern-ref">Cerchio</span>
+        </div>
+      </div>
+      <div class="pattern-tile">
+        <img src="assets/patterns/ILL-Pattern_6.jpg" alt="Diffraction Field" onerror="this.style.display='none'">
+        <div class="pattern-caption">
+          <span class="pattern-name">Diffraction Field</span>
+          <span class="pattern-ref">Diamante</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 05 FAVICON -->
