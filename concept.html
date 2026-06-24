@@ -1,19 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website Concept — Illuminati Lighting UK</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400&family=DM+Sans:opsz,wght@9..40,300;9..40,400&family=Jost:ital,wght@0,200;0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; }
-body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex-direction: column; }
+
+[data-theme="light"] {
+  --bg:      #F1ECE5;
+  --primary: #1A1714;
+  --accent:  #8A6A3A;
+  --muted:   #78726C;
+  --rule:    #DDD5C6;
+  --surface: #E6DFD6;
+}
+[data-theme="dark"] {
+  --bg:      #1A1714;
+  --primary: #F1ECE5;
+  --accent:  #8A6A3A;
+  --muted:   #5A5450;
+  --rule:    #2E2824;
+  --surface: #241F1B;
+}
+
+html, body { min-height: 100%; }
+body { font-family: 'Jost', sans-serif; background: #0A0806; }
 
 /* ── SHARED NAV ── */
-.nav { flex-shrink: 0; background: #080706; }
+.nav { background: #080706; position: sticky; top: 0; z-index: 200; }
 .snav-row { height: 44px; display: flex; align-items: center; padding: 0 40px; justify-content: space-between; border-bottom: 0.5px solid #1A1A1A; }
 .snav-wm { display: flex; align-items: center; text-decoration: none; }
 .snav-tabs { display: flex; align-items: center; }
@@ -24,18 +42,405 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
 .mode-btn { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; color: #888; background: none; border: 0.5px solid #2A2A2A; padding: 4px 14px; cursor: pointer; transition: all 0.15s; }
 .mode-btn.active { color: #E0DAD2; border-color: #555; background: #1A1A1A; }
 
-/* ── PAGE ── */
-.stage { flex: 1; overflow-y: auto; }
-.holder { min-height: 100%; display: flex; align-items: center; justify-content: center; padding: 80px 56px; }
-.centred { max-width: 480px; }
-.sect-tag { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.24em; text-transform: uppercase; color: #444; display: block; margin-bottom: 20px; }
-.page-heading { font-family: 'Jost', sans-serif; font-size: 28px; font-weight: 200; color: #E0DAD2; line-height: 1.2; margin-bottom: 20px; }
-.page-body { font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.85; color: #666; max-width: 420px; }
+/* ── CONCEPT BANNER ── */
+.concept-banner {
+  position: fixed;
+  top: 44px; left: 0; right: 0;
+  height: 28px;
+  background: #1A1714;
+  z-index: 190;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Jost', sans-serif;
+  font-size: 8.5px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(241,236,229,0.65);
+  pointer-events: none;
+}
+
+/* ── SIMULATED SITE NAV ── */
+.site-nav {
+  position: fixed;
+  top: 72px; left: 0; right: 0;
+  height: 60px;
+  z-index: 180;
+  background: transparent;
+  border-bottom: 0.5px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+}
+[data-theme="light"] .site-nav.scrolled {
+  background: rgba(241,236,229,0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom-color: var(--rule);
+}
+[data-theme="dark"] .site-nav.scrolled {
+  background: rgba(26,23,20,0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom-color: var(--rule);
+}
+.site-nav-wm { display: flex; align-items: center; flex: 0 0 auto; }
+.site-nav-links {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+}
+.site-nav-links a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9.5px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primary);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.site-nav-links a:hover { opacity: 0.5; }
+.site-nav-enquire {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9.5px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8A6A3A;
+  text-decoration: none;
+  flex: 0 0 auto;
+  transition: opacity 0.2s;
+}
+.site-nav-enquire:hover { opacity: 0.7; }
+/* force light-coloured nav text over dark hero before scroll */
+.site-nav:not(.scrolled) .site-nav-links a { color: #F1ECE5; }
+.site-nav:not(.scrolled) .site-nav-wm svg g { fill: #F1ECE5; }
+
+/* ── STAGE ── */
+.stage { padding-top: 88px; } /* banner 28px + site-nav 60px */
+
+/* ── HERO ── */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  background: #0A0806;
+  overflow: hidden;
+}
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,8,6,0.85) 0%, rgba(10,8,6,0.1) 55%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-wm {
+  position: absolute;
+  top: 40px; left: 40px;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 700ms ease 200ms;
+}
+.hero-wm.loaded { opacity: 1; }
+.hero-text {
+  position: absolute;
+  bottom: 56px; left: 56px;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 800ms ease 400ms, transform 800ms ease 400ms;
+}
+.hero-text.loaded { opacity: 1; transform: translateY(0); }
+.hero-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #8A6A3A;
+  display: block;
+  margin-bottom: 16px;
+}
+.hero-rule { width: 24px; height: 0.5px; background: #8A6A3A; margin-bottom: 16px; }
+.hero-headline {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 200;
+  color: #F1ECE5;
+  line-height: 0.95;
+}
+.hero-cover {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 0;
+  background: var(--bg);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ── PROJECTS CAROUSEL ── */
+.projects-section {
+  position: relative;
+  background: #0A0806;
+  height: 100vh;
+  overflow: hidden;
+}
+.carousel-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.25,0.1,0.25,1);
+}
+.carousel-slide {
+  flex: 0 0 100vw;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background: #0A0806;
+  overflow: hidden;
+}
+.slide-atmosphere {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(80px, 12vw, 160px);
+  font-weight: 200;
+  color: #F1ECE5;
+  opacity: 0.07;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+.slide-info {
+  position: absolute;
+  bottom: 56px; left: 56px;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 400ms ease, transform 400ms ease;
+}
+.slide-info.active { opacity: 1; transform: translateY(0); }
+.slide-location {
+  font-family: 'Jost', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8A6A3A;
+  display: block;
+  margin-bottom: 12px;
+}
+.slide-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 200;
+  color: #F1ECE5;
+  line-height: 1;
+  display: block;
+  margin-bottom: 8px;
+}
+.slide-meta {
+  font-family: 'Jost', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  color: #78726C;
+  letter-spacing: 0.1em;
+  display: block;
+}
+.carousel-arrow {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  z-index: 10;
+  background: none;
+  border: 0.5px solid rgba(241,236,229,0.2);
+  color: #F1ECE5;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+.carousel-arrow:hover { border-color: rgba(241,236,229,0.5); }
+.carousel-arrow.prev { left: 32px; }
+.carousel-arrow.next { right: 32px; }
+.carousel-dots {
+  position: absolute;
+  bottom: 24px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 8px;
+  z-index: 10;
+}
+.carousel-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(241,236,229,0.3);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.carousel-dot.active { background: #F1ECE5; transform: scale(1.3); }
+
+/* ── PATTERN STRIP ── */
+.pattern-strip {
+  width: 100%;
+  height: 180px;
+  background: #0A0806;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.pattern-strip.revealed { opacity: 1; }
+
+/* ── BESPOKE SECTION ── */
+.bespoke-section {
+  min-height: 100vh;
+  background: var(--surface);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.bespoke-left {
+  background: #0A0806;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 100vh;
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+.bespoke-left.revealed { opacity: 1; transform: translateX(0); }
+.bespoke-left-atm {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(80px, 12vw, 160px);
+  font-weight: 200;
+  color: #F1ECE5;
+  opacity: 0.07;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+.bespoke-right {
+  padding: 80px;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 700ms ease 200ms, transform 700ms ease 200ms;
+}
+.bespoke-right.revealed { opacity: 1; transform: translateX(0); }
+.bespoke-inner { max-width: 540px; }
+.bespoke-service-tag {
+  font-family: 'Jost', sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+}
+.bespoke-rule { width: 24px; height: 0.5px; background: var(--accent); margin: 20px 0 28px; }
+.bespoke-headline {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 200;
+  color: var(--primary);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.bespoke-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--primary);
+  opacity: 0.6;
+  max-width: 480px;
+  margin-bottom: 40px;
+}
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 32px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 0.5px solid var(--rule);
+}
+.detail-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 8.5px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 6px;
+}
+.detail-value {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--primary);
+  opacity: 0.65;
+  line-height: 1.6;
+  display: block;
+}
+
+/* ── FOOTER ── */
+.concept-footer {
+  padding: 40px 56px;
+  background: var(--bg);
+  border-top: 0.5px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-left {
+  font-family: 'Jost', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.footer-right {
+  font-family: 'Jost', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  color: var(--accent);
+}
+
+/* ── WATERMARK ── */
+.concept-watermark {
+  position: fixed;
+  bottom: 20px; right: 24px;
+  pointer-events: none;
+  font-family: 'Jost', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(138,106,58,0.5);
+  z-index: 300;
+}
 
 @media (max-width: 720px) {
   .snav-row { padding: 0 16px; }
   .snav-tab { padding: 0 10px; font-size: 8px; }
-  .holder { padding: 48px 24px; }
+  .site-nav { padding: 0 20px; }
+  .site-nav-links { gap: 16px; }
+  .hero-wm { left: 24px; top: 24px; }
+  .hero-text { left: 24px; bottom: 40px; }
+  .slide-info { left: 24px; bottom: 40px; }
+  .bespoke-section { grid-template-columns: 1fr; }
+  .bespoke-left { min-height: 50vh; }
+  .bespoke-right { padding: 48px 24px; }
+  .concept-footer { flex-direction: column; gap: 12px; padding: 32px 24px; }
 }
 </style>
 </head>
@@ -56,25 +461,236 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
   </div>
 </nav>
 
-<div class="stage">
-  <div class="holder">
-    <div class="centred">
-      <span class="sect-tag">Website Concept</span>
-      <h1 class="page-heading">In development</h1>
-      <p class="page-body">This section will present the chosen brand direction applied to a full website layout — hero, collection feature, and bespoke service sections — using Illuminati's product photography. Available once a direction has been selected.</p>
-    </div>
+<!-- CONCEPT BANNER -->
+<div class="concept-banner">Direction 2 &nbsp;·&nbsp; Mineral &amp; Restraint &nbsp;·&nbsp; Website Concept &nbsp;·&nbsp; For Review Only</div>
+
+<!-- SIMULATED SITE NAV -->
+<nav class="site-nav" id="siteNav">
+  <div class="site-nav-wm">
+    <svg viewBox="0 0 512 79.63" height="20" xmlns="http://www.w3.org/2000/svg" style="display:block">
+      <g fill="var(--primary)">
+        <rect y="22.69" width="11.23" height="56.94"/>
+        <rect x="24.07" y=".12" width="11.23" height="79.51"/>
+        <rect x="48.13" y=".12" width="11.23" height="79.51"/>
+        <polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/>
+        <polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/>
+        <rect x="234.02" y="22.69" width="11.23" height="56.94"/>
+        <polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/>
+        <rect x="338.48" y="23.46" width="68.6" height="11.23" fill="#8A6A3A"/>
+        <path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z" fill="#8A6A3A"/>
+        <rect x="500.77" y="22.69" width="11.23" height="56.94"/>
+        <polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/>
+      </g>
+    </svg>
   </div>
-</div>
+  <div class="site-nav-links">
+    <a href="#">Collections</a>
+    <a href="#">Bespoke</a>
+    <a href="#">Projects</a>
+    <a href="#">About</a>
+  </div>
+  <a href="#" class="site-nav-enquire">Enquire</a>
+</nav>
+
+<div class="stage">
+
+  <!-- SECTION 1 — HERO -->
+  <section class="hero-section" id="hero">
+    <div class="hero-gradient"></div>
+    <div class="hero-wm" id="heroWm">
+      <svg viewBox="0 0 512 79.63" height="24" xmlns="http://www.w3.org/2000/svg" style="display:block">
+        <g fill="var(--primary)">
+          <rect y="22.69" width="11.23" height="56.94"/>
+          <rect x="24.07" y=".12" width="11.23" height="79.51"/>
+          <rect x="48.13" y=".12" width="11.23" height="79.51"/>
+          <polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/>
+          <polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/>
+          <rect x="234.02" y="22.69" width="11.23" height="56.94"/>
+          <polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/>
+          <rect x="338.48" y="23.46" width="68.6" height="11.23" fill="#8A6A3A"/>
+          <path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z" fill="#8A6A3A"/>
+          <rect x="500.77" y="22.69" width="11.23" height="56.94"/>
+          <polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/>
+        </g>
+      </svg>
+    </div>
+    <div class="hero-text" id="heroText">
+      <span class="hero-label">Illuminati Lighting UK</span>
+      <div class="hero-rule"></div>
+      <h1 class="hero-headline">Where material<br>and light arrive<br>at the same answer</h1>
+    </div>
+    <div class="hero-cover" id="heroCover"></div>
+  </section>
+
+  <!-- SECTION 2 — PROJECTS CAROUSEL -->
+  <section class="projects-section" id="projects">
+    <div class="carousel-track" id="carouselTrack">
+
+      <div class="carousel-slide">
+        <div class="slide-atmosphere">Amano Hotel</div>
+        <div class="slide-info active">
+          <span class="slide-location">London, UK</span>
+          <span class="slide-name">Amano Hotel</span>
+          <span class="slide-meta">Ceiling Installation · Concentric Collection · 2024</span>
+        </div>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-atmosphere">Private Residence</div>
+        <div class="slide-info">
+          <span class="slide-location">Mayfair, London</span>
+          <span class="slide-name">Private Residence</span>
+          <span class="slide-meta">Bespoke Commission · Cerchio Series · 2023</span>
+        </div>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-atmosphere">The Arts Club</div>
+        <div class="slide-info">
+          <span class="slide-location">Dubai, UAE</span>
+          <span class="slide-name">The Arts Club</span>
+          <span class="slide-meta">Contract Lighting · Custom Collection · 2024</span>
+        </div>
+      </div>
+
+    </div>
+    <button class="carousel-arrow prev" id="prevBtn" aria-label="Previous">&#8592;</button>
+    <button class="carousel-arrow next" id="nextBtn" aria-label="Next">&#8594;</button>
+    <div class="carousel-dots" id="carouselDots">
+      <div class="carousel-dot active" data-idx="0"></div>
+      <div class="carousel-dot" data-idx="1"></div>
+      <div class="carousel-dot" data-idx="2"></div>
+    </div>
+  </section>
+
+  <!-- PATTERN STRIP -->
+  <div class="pattern-strip" id="patternStrip">
+    <img src="assets/patterns/ILL-Pattern_4.jpg" style="width:100%;height:100%;object-fit:cover;opacity:0.55;" onerror="this.style.display='none'" />
+  </div>
+
+  <!-- SECTION 3 — BESPOKE SERVICE -->
+  <section class="bespoke-section" id="bespoke">
+    <div class="bespoke-left" id="bespokeLeft">
+      <div class="bespoke-left-atm">Bespoke</div>
+    </div>
+    <div class="bespoke-right" id="bespokeRight">
+      <div class="bespoke-inner">
+        <span class="bespoke-service-tag">Bespoke Design Service</span>
+        <div class="bespoke-rule"></div>
+        <h2 class="bespoke-headline">Lighting designed<br>for the space<br>it will define</h2>
+        <p class="bespoke-body">Our bespoke service works directly with interior designers, architects, and private clients to achieve results no catalogue product can offer. From initial concept to installation — technical precision and material expertise at every stage of every commission.</p>
+        <div class="detail-grid">
+          <div>
+            <span class="detail-label">Sectors</span>
+            <span class="detail-value">Residential · Hospitality · Commercial</span>
+          </div>
+          <div>
+            <span class="detail-label">Association</span>
+            <span class="detail-value">Lighting Industry Association member</span>
+          </div>
+          <div>
+            <span class="detail-label">Exhibitions</span>
+            <span class="detail-value">Decorex · Paris D&eacute;co Off · Dubai Index</span>
+          </div>
+          <div>
+            <span class="detail-label">Process</span>
+            <span class="detail-value">Brief &rarr; Design &rarr; Fabrication &rarr; Install</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="concept-footer">
+    <div class="footer-left">&copy; 2026 Illuminati Lighting UK Ltd<br>illuminati-lighting.co.uk</div>
+    <div class="footer-right">Website Concept &nbsp;&middot;&nbsp; Direction 2 &nbsp;&middot;&nbsp; Mineral &amp; Restraint</div>
+  </footer>
+
+</div><!-- .stage -->
+
+<!-- WATERMARK -->
+<div class="concept-watermark">Concept only &nbsp;&middot;&nbsp; Not for reproduction</div>
 
 <script>
+// ── THEME ──
 let currentMode = localStorage.getItem('ill-mode') || 'light';
+document.documentElement.dataset.theme = currentMode;
 document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('active', b.dataset.mode === currentMode));
 
 function setMode(mode) {
   currentMode = mode;
   localStorage.setItem('ill-mode', mode);
+  document.documentElement.dataset.theme = mode;
   document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
 }
+
+// ── HERO ENTRANCE ──
+window.addEventListener('load', () => {
+  document.getElementById('heroWm').classList.add('loaded');
+  document.getElementById('heroText').classList.add('loaded');
+});
+
+// ── SCROLL: site nav + hero cover ──
+const siteNav = document.getElementById('siteNav');
+const heroCover = document.getElementById('heroCover');
+const hero = document.getElementById('hero');
+
+window.addEventListener('scroll', () => {
+  const sy = window.scrollY;
+
+  // site nav
+  siteNav.classList.toggle('scrolled', sy > 80);
+
+  // hero cover slides up from bottom
+  const heroH = hero.offsetHeight;
+  heroCover.style.height = Math.min(sy, heroH) + 'px';
+}, { passive: true });
+
+// ── CAROUSEL ──
+let current = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const track = document.getElementById('carouselTrack');
+const dots = document.querySelectorAll('.carousel-dot');
+
+function goTo(idx) {
+  slides[current].querySelector('.slide-info').classList.remove('active');
+  current = ((idx % slides.length) + slides.length) % slides.length;
+  track.style.transform = 'translateX(-' + (current * 100) + 'vw)';
+  slides[current].querySelector('.slide-info').classList.add('active');
+  dots.forEach((d, i) => d.classList.toggle('active', i === current));
+}
+
+document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.idx)));
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') goTo(current - 1);
+  if (e.key === 'ArrowRight') goTo(current + 1);
+});
+
+let touchX = 0;
+const proj = document.getElementById('projects');
+proj.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+proj.addEventListener('touchend', e => {
+  const dx = touchX - e.changedTouches[0].clientX;
+  if (Math.abs(dx) > 50) goTo(current + (dx > 0 ? 1 : -1));
+}, { passive: true });
+
+// ── INTERSECTION OBSERVERS ──
+new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
+}, { threshold: 0.2 }).observe(document.getElementById('patternStrip'));
+
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.getElementById('bespokeLeft').classList.add('revealed');
+      document.getElementById('bespokeRight').classList.add('revealed');
+    }
+  });
+}, { threshold: 0.2 }).observe(document.getElementById('bespoke'));
 </script>
 </body>
 </html>
