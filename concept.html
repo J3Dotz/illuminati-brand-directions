@@ -6,7 +6,7 @@
 <title>Website Concept — Illuminati Lighting UK</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400&family=DM+Sans:opsz,wght@9..40,300;9..40,400&family=Jost:ital,wght@0,200;0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400&family=DM+Sans:opsz,wght@9..40,300;9..40,400&family=Jost:ital,wght@0,200;0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@400;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -27,8 +27,8 @@
   --surface: #241F1B;
 }
 
-html, body { min-height: 100%; }
-body { font-family: 'Jost', sans-serif; background: #0A0806; }
+html, body { height: 100%; overflow: hidden; }
+body { font-family: 'Jost', sans-serif; background: #0A0806; display: flex; flex-direction: column; }
 
 /* ── SHARED NAV ── */
 .nav { background: #080706; position: sticky; top: 0; z-index: 200; }
@@ -44,11 +44,8 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
 
 /* ── CONCEPT BANNER ── */
 .concept-banner {
-  position: fixed;
-  top: 44px; left: 0; right: 0;
   height: 28px;
   background: #1A1714;
-  z-index: 190;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,14 +56,21 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
   text-transform: uppercase;
   color: rgba(241,236,229,0.65);
   pointer-events: none;
+  flex-shrink: 0;
 }
+/* ── DIRECTION TAB ROW ── */
+.dir-tab-row { height: 44px; display: flex; align-items: center; justify-content: center; padding: 0 40px; border-bottom: 0.5px solid #1A1A1A; flex-shrink: 0; }
+.dir-tab { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: #888; padding: 0 22px; height: 100%; display: flex; align-items: center; cursor: pointer; border: none; background: none; border-bottom: 1.5px solid transparent; transition: color 0.15s, border-color 0.15s; white-space: nowrap; }
+.dir-tab:hover { color: #B0A89E; }
+.dir-tab.active { color: #E0DAD2; border-bottom-color: #E0DAD2; }
 
 /* ── SIMULATED SITE NAV ── */
 .site-nav {
-  position: fixed;
-  top: 72px; left: 0; right: 0;
+  position: sticky;
+  top: 0;
+  width: 100%;
   height: 60px;
-  z-index: 180;
+  z-index: 10;
   background: transparent;
   border-bottom: 0.5px solid transparent;
   transition: background 0.3s ease, border-color 0.3s ease;
@@ -74,18 +78,17 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
   align-items: center;
   padding: 0 40px;
 }
-[data-theme="light"] .site-nav.scrolled {
-  background: rgba(241,236,229,0.95);
+.site-nav.scrolled {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom-color: var(--rule);
 }
-[data-theme="dark"] .site-nav.scrolled {
-  background: rgba(26,23,20,0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom-color: var(--rule);
-}
+[data-theme="light"] #cp2 .site-nav.scrolled { background: rgba(241,236,229,0.95); }
+[data-theme="dark"] #cp2 .site-nav.scrolled { background: rgba(26,23,20,0.95); }
+[data-theme="light"] #cp1 .site-nav.scrolled,
+[data-theme="light"] #cp3 .site-nav.scrolled { background: rgba(245,240,235,0.95); }
+[data-theme="dark"] #cp1 .site-nav.scrolled { background: rgba(12,9,8,0.95); }
+[data-theme="dark"] #cp3 .site-nav.scrolled { background: rgba(43,4,5,0.95); }
 .site-nav-wm { display: flex; align-items: center; flex: 0 0 auto; }
 .site-nav-links {
   flex: 1;
@@ -111,7 +114,7 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
   font-weight: 300;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #8A6A3A;
+  color: var(--accent);
   text-decoration: none;
   flex: 0 0 auto;
   transition: opacity 0.2s;
@@ -122,7 +125,9 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
 .site-nav:not(.scrolled) .site-nav-wm svg g { fill: #F1ECE5; }
 
 /* ── STAGE ── */
-.stage { padding-top: 88px; } /* banner 28px + site-nav 60px */
+.stage { flex: 1; overflow: hidden; position: relative; }
+.concept-panel { position: absolute; inset: 0; overflow-y: auto; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.4s ease, visibility 0s linear 0.4s; }
+.concept-panel.active { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity 0.4s ease; }
 
 /* ── HERO ── */
 .hero-section {
@@ -154,11 +159,11 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
   font-weight: 300;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: #8A6A3A;
+  color: var(--accent);
   display: block;
   margin-bottom: 16px;
 }
-.hero-rule { width: 24px; height: 0.5px; background: #8A6A3A; margin-bottom: 16px; }
+.hero-rule { width: 24px; height: 0.5px; background: var(--accent); margin-bottom: 16px; }
 .hero-headline {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(48px, 7vw, 88px);
@@ -225,7 +230,7 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
   font-weight: 300;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #8A6A3A;
+  color: var(--accent);
   display: block;
   margin-bottom: 12px;
 }
@@ -410,6 +415,32 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
   z-index: 300;
 }
 
+/* ── D1 VARS ── */
+[data-theme="light"] #cp1 { --bg:#F5F0EB; --primary:#0E0B0A; --accent:#8E1315; --muted:#9A8E86; --rule:#DDD7CF; --surface:#E8E2DA; }
+[data-theme="dark"]  #cp1 { --bg:#0C0908; --primary:#F0EAE3; --accent:#8E1315; --muted:#665C58; --rule:#1E1210; --surface:#160E0C; }
+/* ── D2 VARS (scoped, replaces root-level) ── */
+[data-theme="light"] #cp2 { --bg:#F1ECE5; --primary:#1A1714; --accent:#8A6A3A; --muted:#78726C; --rule:#DDD5C6; --surface:#E6DFD6; }
+[data-theme="dark"]  #cp2 { --bg:#1A1714; --primary:#F1ECE5; --accent:#8A6A3A; --muted:#5A5450; --rule:#2E2824; --surface:#241F1B; }
+/* ── D3 VARS ── */
+[data-theme="light"] #cp3 { --bg:#F5F0EB; --primary:#0E0B0A; --accent:#8E1315; --muted:#9A8E86; --rule:#DDD7CF; --surface:#E8E2DA; }
+[data-theme="dark"]  #cp3 { --bg:#2B0405; --primary:#F5F0EB; --accent:#8E1315; --muted:#A8645A; --rule:#1C0203; --surface:#1C0203; }
+
+/* ── D1 TYPOGRAPHY OVERRIDES ── */
+#cp1 .hero-headline { font-family: 'Space Mono', monospace; font-weight: 400; }
+#cp1 .slide-name { font-family: 'Space Mono', monospace; font-weight: 400; font-size: clamp(32px, 4.5vw, 56px); }
+#cp1 .bespoke-headline { font-family: 'Space Mono', monospace; font-weight: 400; }
+#cp1 .bespoke-body { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 300; }
+#cp1 .bespoke-section { background: var(--surface); }
+
+/* ── D3 TYPOGRAPHY OVERRIDES ── */
+#cp3 .hero-headline { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; text-transform: uppercase; }
+#cp3 .slide-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: clamp(40px, 5.5vw, 72px); }
+#cp3 .bespoke-headline { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; }
+#cp3 .bespoke-body { font-family: 'Jost', sans-serif; font-weight: 300; }
+#cp3 .bespoke-section { background: var(--surface); }
+/* D3: wordmark stays red even over dark hero */
+#cp3 .site-nav:not(.scrolled) .site-nav-wm svg g { fill: #8E1315; }
+
 @media (max-width: 720px) {
   .snav-row { padding: 0 16px; }
   .snav-tab { padding: 0 10px; font-size: 8px; }
@@ -440,40 +471,70 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
       <button class="mode-btn" data-mode="dark" onclick="setMode('dark',this)">Dark</button>
     </div>
   </div>
-</nav>
-
-<!-- CONCEPT BANNER -->
-<div class="concept-banner">Direction 2 &nbsp;·&nbsp; Mineral &amp; Restraint &nbsp;·&nbsp; Website Concept &nbsp;·&nbsp; For Review Only</div>
-
-<!-- SIMULATED SITE NAV -->
-<nav class="site-nav" id="siteNav">
-  <div class="site-nav-wm">
-    <svg viewBox="0 0 512 79.63" height="20" xmlns="http://www.w3.org/2000/svg" style="display:block">
-      <g fill="var(--primary)">
-        <rect y="22.69" width="11.23" height="56.94"/>
-        <rect x="24.07" y=".12" width="11.23" height="79.51"/>
-        <rect x="48.13" y=".12" width="11.23" height="79.51"/>
-        <polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/>
-        <polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/>
-        <rect x="234.02" y="22.69" width="11.23" height="56.94"/>
-        <polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/>
-        <rect x="338.48" y="23.46" width="68.6" height="11.23" fill="#8A6A3A"/>
-        <path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z" fill="#8A6A3A"/>
-        <rect x="500.77" y="22.69" width="11.23" height="56.94"/>
-        <polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/>
-      </g>
-    </svg>
+  <div class="concept-banner" id="conceptBanner">Direction 2 &nbsp;·&nbsp; Mineral &amp; Restraint &nbsp;·&nbsp; Website Concept &nbsp;·&nbsp; For Review Only</div>
+  <div class="dir-tab-row">
+    <button class="dir-tab" onclick="showConcept(1,this)">Direction 1 — Intentional Red</button>
+    <button class="dir-tab active" onclick="showConcept(2,this)">Direction 2 — Mineral &amp; Restraint</button>
+    <button class="dir-tab" onclick="showConcept(3,this)">Direction 3 — Red as Primary</button>
   </div>
-  <div class="site-nav-links">
-    <a href="#">Collections</a>
-    <a href="#">Bespoke</a>
-    <a href="#">Projects</a>
-    <a href="#">About</a>
-  </div>
-  <a href="#" class="site-nav-enquire">Enquire</a>
 </nav>
 
 <div class="stage">
+
+  <!-- ── D1 PANEL — INTENTIONAL RED ── -->
+  <div id="cp1" class="concept-panel">
+  <nav class="site-nav" id="siteNav1">
+    <div class="site-nav-wm"><svg viewBox="0 0 512 79.63" height="20" xmlns="http://www.w3.org/2000/svg" style="display:block"><g fill="var(--primary)"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><g fill="var(--accent)"><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/></g><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div>
+    <div class="site-nav-links"><a href="#">Collections</a><a href="#">Bespoke</a><a href="#">Projects</a><a href="#">About</a></div>
+    <a href="#" class="site-nav-enquire">Enquire</a>
+  </nav>
+  <section class="hero-section" id="hero1">
+    <img src="assets/patterns/ILL-Pattern_1.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;mix-blend-mode:overlay;pointer-events:none;z-index:0;" onerror="this.style.display='none'" />
+    <div class="hero-gradient" style="z-index:1;"></div>
+    <div class="hero-text" id="heroText1" style="z-index:2;">
+      <span class="hero-label">Illuminati Lighting UK</span>
+      <div class="hero-rule"></div>
+      <h1 class="hero-headline">Where material<br>and light arrive<br>at the same answer</h1>
+    </div>
+  </section>
+  <section class="projects-section" id="projects1">
+    <div class="carousel-track" id="carouselTrack1">
+      <div class="carousel-slide"><div class="slide-atmosphere" style="opacity:0.03;">The Arts Club</div><img src="assets/photos/1-Hallway.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:lighten;" onerror="this.style.display='none'" /><div class="slide-info active"><span class="slide-location">Dubai, UAE</span><span class="slide-name">The Arts Club</span><span class="slide-meta">Contract Lighting · Custom Collection · 2024</span></div></div>
+      <div class="carousel-slide"><div class="slide-atmosphere">Private Residence</div><img src="assets/photos/2-LivingRoom.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:lighten;" onerror="this.style.display='none'" /><div class="slide-info"><span class="slide-location">Mayfair, London</span><span class="slide-name">Private Residence</span><span class="slide-meta">Bespoke Commission · Cerchio Series · 2023</span></div></div>
+      <div class="carousel-slide"><div class="slide-atmosphere">Amano Hotel</div><img src="assets/photos/3-HotelLobby.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:lighten;" onerror="this.style.display='none'" /><div class="slide-info"><span class="slide-location">London, UK</span><span class="slide-name">Amano Hotel</span><span class="slide-meta">Ceiling Installation · Concentric Collection · 2024</span></div></div>
+    </div>
+    <button class="carousel-arrow prev" id="prevBtn1" aria-label="Previous">&#8592;</button>
+    <button class="carousel-arrow next" id="nextBtn1" aria-label="Next">&#8594;</button>
+    <div class="carousel-dots" id="carouselDots1"><div class="carousel-dot active" data-idx="0"></div><div class="carousel-dot" data-idx="1"></div><div class="carousel-dot" data-idx="2"></div></div>
+  </section>
+  <section class="bespoke-section" id="bespoke1">
+    <div class="bespoke-left" id="bespokeLeft1"><img src="assets/photos/4-BespokeLighting.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:lighten;" onerror="this.style.display='none'" /></div>
+    <div class="bespoke-right" id="bespokeRight1"><div class="bespoke-inner">
+      <span class="bespoke-service-tag">Bespoke Design Service</span>
+      <div class="bespoke-rule"></div>
+      <h2 class="bespoke-headline">Lighting designed<br>for the space<br>it will define</h2>
+      <p class="bespoke-body">Our bespoke service works directly with interior designers, architects, and private clients to achieve results no catalogue product can offer. From initial concept to installation — technical precision and material expertise at every stage of every commission.</p>
+      <div class="detail-grid">
+        <div><span class="detail-label">Sectors</span><span class="detail-value">Residential · Hospitality · Commercial</span></div>
+        <div><span class="detail-label">Association</span><span class="detail-value">Lighting Industry Association member</span></div>
+        <div><span class="detail-label">Exhibitions</span><span class="detail-value">Decorex · Paris D&eacute;co Off · Dubai Index</span></div>
+        <div><span class="detail-label">Process</span><span class="detail-value">Brief &rarr; Design &rarr; Fabrication &rarr; Install</span></div>
+      </div>
+    </div></div>
+  </section>
+  <footer class="concept-footer">
+    <div class="footer-left">&copy; 2026 Illuminati Lighting UK Ltd<br>illuminati-lighting.co.uk</div>
+    <div class="footer-right">Website Concept &nbsp;&middot;&nbsp; Direction 1 &nbsp;&middot;&nbsp; Intentional Red</div>
+  </footer>
+  </div><!-- #cp1 -->
+
+  <!-- ── D2 PANEL — MINERAL & RESTRAINT ── -->
+  <div id="cp2" class="concept-panel active">
+  <nav class="site-nav" id="siteNav2">
+    <div class="site-nav-wm"><svg viewBox="0 0 512 79.63" height="20" xmlns="http://www.w3.org/2000/svg" style="display:block"><g fill="var(--primary)"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><rect x="338.48" y="23.46" width="68.6" height="11.23" fill="var(--accent)"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z" fill="var(--accent)"/><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div>
+    <div class="site-nav-links"><a href="#">Collections</a><a href="#">Bespoke</a><a href="#">Projects</a><a href="#">About</a></div>
+    <a href="#" class="site-nav-enquire">Enquire</a>
+  </nav>
 
   <!-- SECTION 1 — HERO -->
   <section class="hero-section" id="hero">
@@ -568,6 +629,54 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
     <div class="footer-left">&copy; 2026 Illuminati Lighting UK Ltd<br>illuminati-lighting.co.uk</div>
     <div class="footer-right">Website Concept &nbsp;&middot;&nbsp; Direction 2 &nbsp;&middot;&nbsp; Mineral &amp; Restraint</div>
   </footer>
+  </div><!-- #cp2 -->
+
+  <!-- ── D3 PANEL — RED AS PRIMARY ── -->
+  <div id="cp3" class="concept-panel">
+  <nav class="site-nav" id="siteNav3">
+    <div class="site-nav-wm"><svg viewBox="0 0 512 79.63" height="20" xmlns="http://www.w3.org/2000/svg" style="display:block"><g fill="#8E1315"><rect y="22.69" width="11.23" height="56.94"/><rect x="24.07" y=".12" width="11.23" height="79.51"/><rect x="48.13" y=".12" width="11.23" height="79.51"/><polygon points="129.3 22.69 129.3 68.4 83.43 68.4 83.43 22.69 72.2 22.69 72.2 79.63 83.43 79.63 129.3 79.63 140.53 79.63 140.53 22.69 129.3 22.69"/><polygon points="216.05 22.69 209.96 22.69 192.9 22.69 181.66 22.69 164.6 22.69 153.36 22.69 153.36 79.63 164.6 79.63 164.6 33.93 181.66 33.93 181.66 79.63 192.9 79.63 192.9 33.93 209.96 33.93 209.96 79.63 221.19 79.63 221.19 22.69 216.05 22.69"/><rect x="234.02" y="22.69" width="11.23" height="56.94"/><polygon points="321.71 22.69 314.42 22.69 269.33 22.69 258.09 22.69 258.09 79.63 269.33 79.63 269.33 33.93 314.42 33.93 314.42 79.63 325.65 79.63 325.65 22.69 321.71 22.69"/><rect x="338.48" y="23.46" width="68.6" height="11.23"/><path d="M338.48,47.49v32.14h68.6v-34.6h-68.6v2.46ZM349.72,56.26h46.13v12.13h-46.13v-12.13Z"/><rect x="500.77" y="22.69" width="11.23" height="56.94"/><polygon points="487.93 34.39 487.93 23.16 431.15 23.16 431.15 0 419.92 0 419.92 79.63 431.15 79.63 487.93 79.63 487.93 68.4 431.15 68.4 431.15 34.39 487.93 34.39"/></g></svg></div>
+    <div class="site-nav-links"><a href="#">Collections</a><a href="#">Bespoke</a><a href="#">Projects</a><a href="#">About</a></div>
+    <a href="#" class="site-nav-enquire">Enquire</a>
+  </nav>
+  <section class="hero-section" id="hero3">
+    <img src="assets/patterns/ILL-Pattern_5.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;mix-blend-mode:overlay;pointer-events:none;z-index:0;" onerror="this.style.display='none'" />
+    <div class="hero-gradient" style="z-index:1;"></div>
+    <div class="hero-text" id="heroText3" style="z-index:2;">
+      <span class="hero-label">Illuminati Lighting UK</span>
+      <div class="hero-rule"></div>
+      <h1 class="hero-headline">Where material<br>and light arrive<br>at the same answer</h1>
+    </div>
+  </section>
+  <section class="projects-section" id="projects3">
+    <div class="carousel-track" id="carouselTrack3">
+      <div class="carousel-slide"><div class="slide-atmosphere" style="opacity:0.03;">The Arts Club</div><img src="assets/photos/1-Hallway.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:lighten;" onerror="this.style.display='none'" /><div class="slide-info active"><span class="slide-location">Dubai, UAE</span><span class="slide-name">The Arts Club</span><span class="slide-meta">Contract Lighting · Custom Collection · 2024</span></div></div>
+      <div class="carousel-slide"><div class="slide-atmosphere">Private Residence</div><img src="assets/photos/2-LivingRoom.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:lighten;" onerror="this.style.display='none'" /><div class="slide-info"><span class="slide-location">Mayfair, London</span><span class="slide-name">Private Residence</span><span class="slide-meta">Bespoke Commission · Cerchio Series · 2023</span></div></div>
+      <div class="carousel-slide"><div class="slide-atmosphere">Amano Hotel</div><img src="assets/photos/3-HotelLobby.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:lighten;" onerror="this.style.display='none'" /><div class="slide-info"><span class="slide-location">London, UK</span><span class="slide-name">Amano Hotel</span><span class="slide-meta">Ceiling Installation · Concentric Collection · 2024</span></div></div>
+    </div>
+    <button class="carousel-arrow prev" id="prevBtn3" aria-label="Previous">&#8592;</button>
+    <button class="carousel-arrow next" id="nextBtn3" aria-label="Next">&#8594;</button>
+    <div class="carousel-dots" id="carouselDots3"><div class="carousel-dot active" data-idx="0"></div><div class="carousel-dot" data-idx="1"></div><div class="carousel-dot" data-idx="2"></div></div>
+  </section>
+  <section class="bespoke-section" id="bespoke3">
+    <div class="bespoke-left" id="bespokeLeft3"><img src="assets/photos/4-BespokeLighting.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center;mix-blend-mode:lighten;" onerror="this.style.display='none'" /></div>
+    <div class="bespoke-right" id="bespokeRight3"><div class="bespoke-inner">
+      <span class="bespoke-service-tag">Bespoke Design Service</span>
+      <div class="bespoke-rule"></div>
+      <h2 class="bespoke-headline">Lighting designed<br>for the space<br>it will define</h2>
+      <p class="bespoke-body">Our bespoke service works directly with interior designers, architects, and private clients to achieve results no catalogue product can offer. From initial concept to installation — technical precision and material expertise at every stage of every commission.</p>
+      <div class="detail-grid">
+        <div><span class="detail-label">Sectors</span><span class="detail-value">Residential · Hospitality · Commercial</span></div>
+        <div><span class="detail-label">Association</span><span class="detail-value">Lighting Industry Association member</span></div>
+        <div><span class="detail-label">Exhibitions</span><span class="detail-value">Decorex · Paris D&eacute;co Off · Dubai Index</span></div>
+        <div><span class="detail-label">Process</span><span class="detail-value">Brief &rarr; Design &rarr; Fabrication &rarr; Install</span></div>
+      </div>
+    </div></div>
+  </section>
+  <footer class="concept-footer">
+    <div class="footer-left">&copy; 2026 Illuminati Lighting UK Ltd<br>illuminati-lighting.co.uk</div>
+    <div class="footer-right">Website Concept &nbsp;&middot;&nbsp; Direction 3 &nbsp;&middot;&nbsp; Red as Primary</div>
+  </footer>
+  </div><!-- #cp3 -->
 
 </div><!-- .stage -->
 
@@ -579,7 +688,6 @@ body { font-family: 'Jost', sans-serif; background: #0A0806; }
 let currentMode = localStorage.getItem('ill-mode') || 'light';
 document.documentElement.dataset.theme = currentMode;
 document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('active', b.dataset.mode === currentMode));
-
 function setMode(mode) {
   currentMode = mode;
   localStorage.setItem('ill-mode', mode);
@@ -587,64 +695,95 @@ function setMode(mode) {
   document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
 }
 
-// ── HERO ENTRANCE ──
-window.addEventListener('load', () => {
-  document.getElementById('heroText').classList.add('loaded');
-});
+// ── CAROUSEL PER PANEL ──
+function initCarousel(panelId) {
+  const panel = document.getElementById(panelId);
+  if (!panel) return;
+  const track = panel.querySelector('.carousel-track');
+  const slides = panel.querySelectorAll('.carousel-slide');
+  const dots = panel.querySelectorAll('.carousel-dot');
+  let cur = 0;
+  function goTo(idx) {
+    slides[cur].querySelector('.slide-info').classList.remove('active');
+    cur = ((idx % slides.length) + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (cur * 100) + 'vw)';
+    slides[cur].querySelector('.slide-info').classList.add('active');
+    dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+  }
+  panel.querySelector('.carousel-arrow.prev').addEventListener('click', () => goTo(cur - 1));
+  panel.querySelector('.carousel-arrow.next').addEventListener('click', () => goTo(cur + 1));
+  dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.idx)));
+  const proj = panel.querySelector('.projects-section');
+  let touchX = 0;
+  proj.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  proj.addEventListener('touchend', e => {
+    const dx = touchX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 50) goTo(cur + (dx > 0 ? 1 : -1));
+  }, { passive: true });
+  document.addEventListener('keydown', e => {
+    if (!panel.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft') goTo(cur - 1);
+    if (e.key === 'ArrowRight') goTo(cur + 1);
+  });
+}
+initCarousel('cp1');
+initCarousel('cp2');
+initCarousel('cp3');
 
-// ── SCROLL: site nav ──
-const siteNav = document.getElementById('siteNav');
-const hero = document.getElementById('hero');
+// ── SCROLL + BESPOKE PER PANEL ──
+function initPanel(panelId, siteNavId, heroId, bespokeId) {
+  const panel = document.getElementById(panelId);
+  const nav = document.getElementById(siteNavId);
+  const hero = document.getElementById(heroId);
+  if (!panel || !nav) return;
+  panel.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', panel.scrollTop > 80);
+    if (hero) hero.style.opacity = panel.scrollTop < hero.offsetHeight ? 1 : 0;
+  }, { passive: true });
+  const bespoke = document.getElementById(bespokeId);
+  if (bespoke) {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          bespoke.querySelector('.bespoke-left').classList.add('revealed');
+          bespoke.querySelector('.bespoke-right').classList.add('revealed');
+        }
+      });
+    }, { threshold: 0.2, root: panel }).observe(bespoke);
+  }
+}
+initPanel('cp1', 'siteNav1', 'hero1', 'bespoke1');
+initPanel('cp2', 'siteNav2', 'hero',  'bespoke');
+initPanel('cp3', 'siteNav3', 'hero3', 'bespoke3');
 
-window.addEventListener('scroll', () => {
-  siteNav.classList.toggle('scrolled', window.scrollY > 80);
-}, { passive: true });
-
-// ── HERO FADE ON SCROLL ──
-new IntersectionObserver(entries => {
-  entries.forEach(e => { hero.style.opacity = e.isIntersecting ? 1 : 0; });
-}, { threshold: 0.05 }).observe(hero);
-
-// ── CAROUSEL ──
-let current = 0;
-const slides = document.querySelectorAll('.carousel-slide');
-const track = document.getElementById('carouselTrack');
-const dots = document.querySelectorAll('.carousel-dot');
-
-function goTo(idx) {
-  slides[current].querySelector('.slide-info').classList.remove('active');
-  current = ((idx % slides.length) + slides.length) % slides.length;
-  track.style.transform = 'translateX(-' + (current * 100) + 'vw)';
-  slides[current].querySelector('.slide-info').classList.add('active');
-  dots.forEach((d, i) => d.classList.toggle('active', i === current));
+// ── CONCEPT PANEL SWITCH ──
+const bannerTexts = {
+  1: 'Direction 1 &nbsp;&middot;&nbsp; Intentional Red &nbsp;&middot;&nbsp; Website Concept &nbsp;&middot;&nbsp; For Review Only',
+  2: 'Direction 2 &nbsp;&middot;&nbsp; Mineral &amp; Restraint &nbsp;&middot;&nbsp; Website Concept &nbsp;&middot;&nbsp; For Review Only',
+  3: 'Direction 3 &nbsp;&middot;&nbsp; Red as Primary &nbsp;&middot;&nbsp; Website Concept &nbsp;&middot;&nbsp; For Review Only'
+};
+function showConcept(n, btn) {
+  const incoming = document.getElementById('cp' + n);
+  document.querySelectorAll('.concept-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.dir-tab').forEach(t => t.classList.remove('active'));
+  incoming.classList.add('active');
+  btn.classList.add('active');
+  incoming.scrollTop = 0;
+  incoming.querySelector('.site-nav').classList.remove('scrolled');
+  document.getElementById('conceptBanner').innerHTML = bannerTexts[n];
+  const heroText = incoming.querySelector('.hero-text');
+  if (heroText) {
+    heroText.classList.remove('loaded');
+    setTimeout(() => heroText.classList.add('loaded'), 50);
+  }
+  incoming.querySelectorAll('.bespoke-left, .bespoke-right').forEach(el => el.classList.remove('revealed'));
 }
 
-document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
-document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
-dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.idx)));
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowLeft') goTo(current - 1);
-  if (e.key === 'ArrowRight') goTo(current + 1);
+// ── HERO ENTRANCE (D2 default) ──
+window.addEventListener('load', () => {
+  const ht = document.getElementById('heroText');
+  if (ht) ht.classList.add('loaded');
 });
-
-let touchX = 0;
-const proj = document.getElementById('projects');
-proj.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
-proj.addEventListener('touchend', e => {
-  const dx = touchX - e.changedTouches[0].clientX;
-  if (Math.abs(dx) > 50) goTo(current + (dx > 0 ? 1 : -1));
-}, { passive: true });
-
-// ── INTERSECTION OBSERVERS ──
-new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      document.getElementById('bespokeLeft').classList.add('revealed');
-      document.getElementById('bespokeRight').classList.add('revealed');
-    }
-  });
-}, { threshold: 0.2 }).observe(document.getElementById('bespoke'));
 </script>
 </body>
 </html>
