@@ -14,9 +14,9 @@ body { font-family: 'Jost', sans-serif; background: #080706; display: flex; flex
 
 /* ── SHARED NAV ── */
 .nav { flex-shrink: 0; background: #080706; }
-.snav-row { height: 44px; display: flex; align-items: center; padding: 0 40px; justify-content: space-between; border-bottom: 0.5px solid #1A1A1A; }
+.snav-row { height: 44px; display: flex; align-items: center; padding: 0 40px; position: relative; border-bottom: 0.5px solid #1A1A1A; }
 .snav-wm { display: flex; align-items: center; text-decoration: none; }
-.snav-tabs { display: flex; align-items: center; }
+.snav-tabs { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; }
 .snav-tab { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: #888; padding: 0 20px; text-decoration: none; transition: color 0.15s; white-space: nowrap; }
 .snav-tab:hover { color: #B0A89E; }
 .snav-tab.active { color: #E0DAD2; }
